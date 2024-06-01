@@ -91,7 +91,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Profile06',
           path: '/profile06',
-          builder: (context, params) => const Profile06Widget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Profile06')
+              : const Profile06Widget(),
         ),
         FFRoute(
           name: 'Home12ProjectDashboard',
@@ -116,6 +118,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Details34SupportPage',
           path: '/details34SupportPage',
           builder: (context, params) => const Details34SupportPageWidget(),
+        ),
+        FFRoute(
+          name: 'edit',
+          path: '/edit',
+          builder: (context, params) => const EditWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -9,3 +9,4 @@ export '/pages/list17_notifications/list17_notifications_widget.dart'
     show List17NotificationsWidget;
 export '/pages/details34_support_page/details34_support_page_widget.dart'
     show Details34SupportPageWidget;
+export '/pages/edit/edit_widget.dart' show EditWidget;

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -1153,6 +1154,13 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                     'Home12ProjectDashboard',
                                                                     context
                                                                         .mounted);
+                                                            FFAppState()
+                                                                    .authToken =
+                                                                currentUserData!
+                                                                    .token;
+                                                            FFAppState()
+                                                                .imageAvatar = '';
+                                                            setState(() {});
                                                           } else {
                                                             await showDialog(
                                                               context: context,
@@ -1160,9 +1168,9 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                   (alertDialogContext) {
                                                                 return AlertDialog(
                                                                   title: const Text(
-                                                                      'Error'),
+                                                                      'Login Fail'),
                                                                   content: const Text(
-                                                                      'error'),
+                                                                      'Wrong username or password'),
                                                                   actions: [
                                                                     TextButton(
                                                                       onPressed:
@@ -1175,6 +1183,8 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                 );
                                                               },
                                                             );
+                                                            HapticFeedback
+                                                                .mediumImpact();
                                                           }
 
                                                           navigate();

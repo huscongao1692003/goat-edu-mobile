@@ -46,7 +46,9 @@ class UserStruct extends BaseStruct {
 
   // "image" field.
   String? _image;
-  String get image => _image ?? '';
+  String get image =>
+      _image ??
+      'https://www.verstappen.com/img/thumb/thumb.php?src=/img/product/1350_b3af8e9_jaarhelm_2023_max_verstappen_5.png&w=700&f=png';
   set image(String? val) => _image = val;
   bool hasImage() => _image != null;
 

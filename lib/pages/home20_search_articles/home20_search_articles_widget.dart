@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -76,12 +77,31 @@ class _Home20SearchArticlesWidgetState
               ),
             ),
           ),
-          title: Text(
-            'Hey Jenny',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  letterSpacing: 0.0,
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text(
+                'Hey',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    currentUserData?.fullname,
+                    'Max',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        fontSize: 24.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
+              ),
+            ],
           ),
           actions: [
             Padding(
@@ -95,8 +115,8 @@ class _Home20SearchArticlesWidgetState
                   color: FlutterFlowTheme.of(context).primaryText,
                   size: 24.0,
                 ),
-                onPressed: () {
-                  print('IconButton pressed ...');
+                onPressed: () async {
+                  context.pushNamed('List17Notifications');
                 },
               ),
             ),

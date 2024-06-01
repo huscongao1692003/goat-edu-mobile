@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -15,6 +16,8 @@ class APIAzureGroup {
   static Map<String, String> headers = {};
   static GetSubjectsCall getSubjectsCall = GetSubjectsCall();
   static LoginCall loginCall = LoginCall();
+  static GetAllNotificationCall getAllNotificationCall =
+      GetAllNotificationCall();
 }
 
 class GetSubjectsCall {
@@ -34,6 +37,12 @@ class GetSubjectsCall {
       alwaysAllowBody: false,
     );
   }
+
+  List? listSubject(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+        true,
+      ) as List?;
 }
 
 class LoginCall {
@@ -56,6 +65,32 @@ class LoginCall {
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetAllNotificationCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetAllNotification',
+      apiUrl: '$baseUrl/api/notification/user',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'page_size': 10,
+        'page_number': 1,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
