@@ -123,6 +123,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'edit',
           path: '/edit',
           builder: (context, params) => const EditWidget(),
+        ),
+        FFRoute(
+          name: 'SubjectDetail',
+          path: '/subjectDetail',
+          builder: (context, params) => SubjectDetailWidget(
+            subjectId: params.getParam(
+              'subjectId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

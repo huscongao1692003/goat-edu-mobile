@@ -14,3 +14,7 @@ import '/auth/custom_auth/auth_util.dart';
 String convertImagepath(String image) {
   return image;
 }
+
+int checkStatusCode(String number) {
+  return int.parse(number);
+}

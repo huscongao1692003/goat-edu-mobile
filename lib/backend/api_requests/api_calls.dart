@@ -18,6 +18,8 @@ class APIAzureGroup {
   static LoginCall loginCall = LoginCall();
   static GetAllNotificationCall getAllNotificationCall =
       GetAllNotificationCall();
+  static CreateAccountCall createAccountCall = CreateAccountCall();
+  static GetSubjectByIdCall getSubjectByIdCall = GetSubjectByIdCall();
 }
 
 class GetSubjectsCall {
@@ -91,6 +93,62 @@ class GetAllNotificationCall {
         'page_size': 10,
         'page_number': 1,
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CreateAccountCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    String? email = '',
+    String? password = '',
+    String? fullName = '',
+    String? roleId = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "username": "$username",
+  "email": "$email",
+  "password": "$password",
+  "fullName": "$fullName",
+  "roleId": "$roleId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateAccount',
+      apiUrl: '$baseUrl/api/auth/register',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetSubjectByIdCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetSubjectById',
+      apiUrl: '$baseUrl/api/subject/$id',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

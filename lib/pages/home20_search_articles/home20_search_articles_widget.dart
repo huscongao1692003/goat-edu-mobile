@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'home20_search_articles_model.dart';
 export 'home20_search_articles_model.dart';
@@ -68,7 +69,7 @@ class _Home20SearchArticlesWidgetState
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50.0),
                   child: Image.network(
-                    'https://picsum.photos/seed/626/600',
+                    functions.convertImagepath(currentUserData!.image),
                     width: 300.0,
                     height: 200.0,
                     fit: BoxFit.cover,
@@ -134,7 +135,7 @@ class _Home20SearchArticlesWidgetState
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                   child: Text(
-                    'Stay up to date with the latest news below.',
+                    'Stay up to date with the latest discussion below.',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
@@ -150,7 +151,7 @@ class _Home20SearchArticlesWidgetState
                     autofocus: true,
                     obscureText: false,
                     decoration: InputDecoration(
-                      labelText: 'Search all articles...',
+                      labelText: 'Search all discussion...',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
                                 fontFamily: 'Readex Pro',

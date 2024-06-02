@@ -12,17 +12,29 @@ class Auth2Model extends FlutterFlowModel<Auth2Widget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
+  // State field(s) for username_Create widget.
+  FocusNode? usernameCreateFocusNode;
+  TextEditingController? usernameCreateTextController;
+  String? Function(BuildContext, String?)?
+      usernameCreateTextControllerValidator;
   // State field(s) for emailAddress_Create widget.
   FocusNode? emailAddressCreateFocusNode;
   TextEditingController? emailAddressCreateTextController;
   String? Function(BuildContext, String?)?
       emailAddressCreateTextControllerValidator;
+  // State field(s) for fullName_Create widget.
+  FocusNode? fullNameCreateFocusNode;
+  TextEditingController? fullNameCreateTextController;
+  String? Function(BuildContext, String?)?
+      fullNameCreateTextControllerValidator;
   // State field(s) for password_Create widget.
   FocusNode? passwordCreateFocusNode;
   TextEditingController? passwordCreateTextController;
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)?
       passwordCreateTextControllerValidator;
+  // Stores action output result for [Backend Call - API (CreateAccount)] action in Button widget.
+  ApiCallResponse? apiResultCreate;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -45,8 +57,14 @@ class Auth2Model extends FlutterFlowModel<Auth2Widget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    usernameCreateFocusNode?.dispose();
+    usernameCreateTextController?.dispose();
+
     emailAddressCreateFocusNode?.dispose();
     emailAddressCreateTextController?.dispose();
+
+    fullNameCreateFocusNode?.dispose();
+    fullNameCreateTextController?.dispose();
 
     passwordCreateFocusNode?.dispose();
     passwordCreateTextController?.dispose();
