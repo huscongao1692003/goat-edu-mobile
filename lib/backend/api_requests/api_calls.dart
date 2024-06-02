@@ -20,6 +20,7 @@ class APIAzureGroup {
       GetAllNotificationCall();
   static CreateAccountCall createAccountCall = CreateAccountCall();
   static GetSubjectByIdCall getSubjectByIdCall = GetSubjectByIdCall();
+  static ReportBugCall reportBugCall = ReportBugCall();
 }
 
 class GetSubjectsCall {
@@ -149,6 +150,38 @@ class GetSubjectByIdCall {
       callType: ApiCallType.GET,
       headers: {},
       params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReportBugCall {
+  Future<ApiCallResponse> call({
+    String? reportTitle = '',
+    String? reportContent = '',
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "reportTitle": "$reportTitle",
+  "reportContent": "$reportContent"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReportBug',
+      apiUrl: '$baseUrl/api/report',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

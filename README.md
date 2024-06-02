@@ -1,6 +1,6 @@
-# GoatEdu Mobile
+# ggpro
 
-Project use api of goat edu backend ( asp.net )
+A new Flutter project.
 
 ## Getting Started
 

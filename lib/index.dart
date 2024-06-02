@@ -12,3 +12,5 @@ export '/pages/details34_support_page/details34_support_page_widget.dart'
 export '/pages/edit/edit_widget.dart' show EditWidget;
 export '/pages/subject_detail/subject_detail_widget.dart'
     show SubjectDetailWidget;
+export '/pages/create3_support_ticket_bug_report/create3_support_ticket_bug_report_widget.dart'
+    show Create3SupportTicketBugReportWidget;

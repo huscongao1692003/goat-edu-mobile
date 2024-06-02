@@ -133,6 +133,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'Create3SupportTicketBugReport',
+          path: '/create3SupportTicketBugReport',
+          builder: (context, params) => const Create3SupportTicketBugReportWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
