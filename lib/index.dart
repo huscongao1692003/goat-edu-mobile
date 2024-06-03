@@ -14,3 +14,4 @@ export '/pages/subject_detail/subject_detail_widget.dart'
     show SubjectDetailWidget;
 export '/pages/create3_support_ticket_bug_report/create3_support_ticket_bug_report_widget.dart'
     show Create3SupportTicketBugReportWidget;
+export '/pages/allesson_page/allesson_page_widget.dart' show AllessonPageWidget;

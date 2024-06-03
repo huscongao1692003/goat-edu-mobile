@@ -101,6 +101,12 @@ class GetAllNotificationCall {
       alwaysAllowBody: false,
     );
   }
+
+  List? listNotification(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+        true,
+      ) as List?;
 }
 
 class CreateAccountCall {
