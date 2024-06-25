@@ -26,42 +26,49 @@ class SubjectStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "subjectName" field.
   String? _subjectName;
   String get subjectName => _subjectName ?? '';
   set subjectName(String? val) => _subjectName = val;
+
   bool hasSubjectName() => _subjectName != null;
 
   // "image" field.
   String? _image;
   String get image => _image ?? '';
   set image(String? val) => _image = val;
+
   bool hasImage() => _image != null;
 
   // "subjectCode" field.
   String? _subjectCode;
   String get subjectCode => _subjectCode ?? '';
   set subjectCode(String? val) => _subjectCode = val;
+
   bool hasSubjectCode() => _subjectCode != null;
 
   // "information" field.
   String? _information;
   String get information => _information ?? '';
   set information(String? val) => _information = val;
+
   bool hasInformation() => _information != null;
 
   // "classes" field.
   String? _classes;
   String get classes => _classes ?? '';
   set classes(String? val) => _classes = val;
+
   bool hasClasses() => _classes != null;
 
   // "createdAt" field.
   DateTime? _createdAt;
   DateTime? get createdAt => _createdAt;
   set createdAt(DateTime? val) => _createdAt = val;
+
   bool hasCreatedAt() => _createdAt != null;
 
   static SubjectStruct fromMap(Map<String, dynamic> data) => SubjectStruct(

@@ -18,18 +18,21 @@ class NotificationStruct extends BaseStruct {
   String? _notificationName;
   String get notificationName => _notificationName ?? '';
   set notificationName(String? val) => _notificationName = val;
+
   bool hasNotificationName() => _notificationName != null;
 
   // "notificationMessage" field.
   String? _notificationMessage;
   String get notificationMessage => _notificationMessage ?? '';
   set notificationMessage(String? val) => _notificationMessage = val;
+
   bool hasNotificationMessage() => _notificationMessage != null;
 
   // "id" field.
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   static NotificationStruct fromMap(Map<String, dynamic> data) =>

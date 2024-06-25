@@ -142,6 +142,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AllessonPage',
           path: '/allessonPage',
           builder: (context, params) => const AllessonPageWidget(),
+        ),
+        FFRoute(
+          name: 'post',
+          path: '/post',
+          builder: (context, params) => const PostWidget(),
+        ),
+        FFRoute(
+          name: 'postdetail',
+          path: '/postdetail',
+          builder: (context, params) => const PostdetailWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

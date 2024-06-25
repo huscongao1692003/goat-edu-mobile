@@ -828,6 +828,7 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                             roleId:
                                                                 '73f0a30e-7a5f-4087-b7e9-4bb87cff6248',
                                                           );
+
                                                           if (functions
                                                                   .checkStatusCode(
                                                                       getJsonField(
@@ -1424,6 +1425,7 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                                 .passwordTextController
                                                                 .text,
                                                           );
+
                                                           if (getJsonField(
                                                                 (_model.loginResponse
                                                                         ?.jsonBody ??

@@ -1,12 +1,10 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'home20_search_articles_widget.dart' show Home20SearchArticlesWidget;
+import 'post_widget.dart' show PostWidget;
 import 'package:flutter/material.dart';
 
-class Home20SearchArticlesModel
-    extends FlutterFlowModel<Home20SearchArticlesWidget> {
+class PostModel extends FlutterFlowModel<PostWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -17,7 +15,6 @@ class Home20SearchArticlesModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }

@@ -22,30 +22,35 @@ class UserCreateStruct extends BaseStruct {
   String? _username;
   String get username => _username ?? '';
   set username(String? val) => _username = val;
+
   bool hasUsername() => _username != null;
 
   // "email" field.
   String? _email;
   String get email => _email ?? '';
   set email(String? val) => _email = val;
+
   bool hasEmail() => _email != null;
 
   // "password" field.
   String? _password;
   String get password => _password ?? '';
   set password(String? val) => _password = val;
+
   bool hasPassword() => _password != null;
 
   // "fullName" field.
   String? _fullName;
   String get fullName => _fullName ?? '';
   set fullName(String? val) => _fullName = val;
+
   bool hasFullName() => _fullName != null;
 
   // "roleId" field.
   String? _roleId;
   String get roleId => _roleId ?? '';
   set roleId(String? val) => _roleId = val;
+
   bool hasRoleId() => _roleId != null;
 
   static UserCreateStruct fromMap(Map<String, dynamic> data) =>

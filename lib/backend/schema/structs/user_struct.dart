@@ -24,24 +24,28 @@ class UserStruct extends BaseStruct {
   String? _userId;
   String get userId => _userId ?? '';
   set userId(String? val) => _userId = val;
+
   bool hasUserId() => _userId != null;
 
   // "username" field.
   String? _username;
   String get username => _username ?? '';
   set username(String? val) => _username = val;
+
   bool hasUsername() => _username != null;
 
   // "fullname" field.
   String? _fullname;
   String get fullname => _fullname ?? '';
   set fullname(String? val) => _fullname = val;
+
   bool hasFullname() => _fullname != null;
 
   // "email" field.
   String? _email;
   String get email => _email ?? '';
   set email(String? val) => _email = val;
+
   bool hasEmail() => _email != null;
 
   // "image" field.
@@ -50,12 +54,14 @@ class UserStruct extends BaseStruct {
       _image ??
       'https://www.verstappen.com/img/thumb/thumb.php?src=/img/product/1350_b3af8e9_jaarhelm_2023_max_verstappen_5.png&w=700&f=png';
   set image(String? val) => _image = val;
+
   bool hasImage() => _image != null;
 
   // "token" field.
   String? _token;
   String get token => _token ?? '';
   set token(String? val) => _token = val;
+
   bool hasToken() => _token != null;
 
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(

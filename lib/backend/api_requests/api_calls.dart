@@ -21,6 +21,12 @@ class APIAzureGroup {
   static CreateAccountCall createAccountCall = CreateAccountCall();
   static GetSubjectByIdCall getSubjectByIdCall = GetSubjectByIdCall();
   static ReportBugCall reportBugCall = ReportBugCall();
+  static GetDiscussionsCall getDiscussionsCall = GetDiscussionsCall();
+  static GetDiscussionByIdCall getDiscussionByIdCall = GetDiscussionByIdCall();
+  static GetFlashcarsCall getFlashcarsCall = GetFlashcarsCall();
+  static GetFlashcardByIdCall getFlashcardByIdCall = GetFlashcardByIdCall();
+  static GetOwnFlashcardCall getOwnFlashcardCall = GetOwnFlashcardCall();
+  static UpdateProfileCall updateProfileCall = UpdateProfileCall();
 }
 
 class GetSubjectsCall {
@@ -37,6 +43,7 @@ class GetSubjectsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -72,6 +79,7 @@ class LoginCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -98,6 +106,7 @@ class GetAllNotificationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -139,6 +148,7 @@ class CreateAccountCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -160,6 +170,7 @@ class GetSubjectByIdCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -192,6 +203,158 @@ class ReportBugCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetDiscussionsCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetDiscussions',
+      apiUrl: '$baseUrl/api/discussion',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'page_size': 10,
+        'page_number': 1,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic listDiscussion(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+      );
+}
+
+class GetDiscussionByIdCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetDiscussionById',
+      apiUrl: '$baseUrl/api/discussion/$id',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetFlashcarsCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetFlashcars',
+      apiUrl: '$baseUrl/api/flashcard',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetFlashcardByIdCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetFlashcardById',
+      apiUrl: '$baseUrl/api/flashcard/$id',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetOwnFlashcardCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetOwnFlashcard',
+      apiUrl: '$baseUrl/api/flashcard/user',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'page_size': "20",
+        'page_number': "1",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateProfileCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+    String? fullName = '',
+    String? phoneNumber = '',
+    FFUploadedFile? image,
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateProfile',
+      apiUrl: '$baseUrl/api/user/profile',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'PhoneNumber': "$phoneNumber",
+        'Image': "$image",
+        'FullName': "$fullName",
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
