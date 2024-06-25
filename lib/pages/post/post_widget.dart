@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -142,7 +143,10 @@ class _PostWidgetState extends State<PostWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Andres Franchellis',
+                          valueOrDefault<String>(
+                            currentUserData?.fullname,
+                            'full_name',
+                          ),
                           style:
                               FlutterFlowTheme.of(context).titleLarge.override(
                                     fontFamily: 'Outfit',
@@ -150,7 +154,10 @@ class _PostWidgetState extends State<PostWidget> {
                                   ),
                         ),
                         Text(
-                          '@andresfrans',
+                          valueOrDefault<String>(
+                            currentUserData?.username,
+                            'username',
+                          ),
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',

@@ -30,7 +30,10 @@ class APIAzureGroup {
 }
 
 class GetSubjectsCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    int? pageNumber,
+    int? pageSize,
+  }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
@@ -38,7 +41,10 @@ class GetSubjectsCall {
       apiUrl: '$baseUrl/api/subject',
       callType: ApiCallType.GET,
       headers: {},
-      params: {},
+      params: {
+        'page_size': 5,
+        'page_number': pageNumber,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -88,6 +94,8 @@ class LoginCall {
 class GetAllNotificationCall {
   Future<ApiCallResponse> call({
     String? authToken = '',
+    int? pageNumber,
+    int? pageSize,
   }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
@@ -99,8 +107,8 @@ class GetAllNotificationCall {
         'Authorization': 'Bearer $authToken',
       },
       params: {
-        'page_size': 10,
-        'page_number': 1,
+        'page_size': 7,
+        'page_number': pageNumber,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -210,7 +218,10 @@ class ReportBugCall {
 }
 
 class GetDiscussionsCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    int? pageSize,
+    int? pageNumber,
+  }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
@@ -219,8 +230,8 @@ class GetDiscussionsCall {
       callType: ApiCallType.GET,
       headers: {},
       params: {
-        'page_size': 10,
-        'page_number': 1,
+        'page_size': "10",
+        'page_number': pageNumber,
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -260,7 +271,10 @@ class GetDiscussionByIdCall {
 }
 
 class GetFlashcarsCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    int? pageNumber,
+    int? pageSize,
+  }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
@@ -268,7 +282,10 @@ class GetFlashcarsCall {
       apiUrl: '$baseUrl/api/flashcard',
       callType: ApiCallType.GET,
       headers: {},
-      params: {},
+      params: {
+        'page_size': 8,
+        'page_number': pageNumber,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -304,6 +321,8 @@ class GetFlashcardByIdCall {
 class GetOwnFlashcardCall {
   Future<ApiCallResponse> call({
     String? authToken = '',
+    int? pageNumber,
+    int? pageSize,
   }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
@@ -316,7 +335,7 @@ class GetOwnFlashcardCall {
       },
       params: {
         'page_size': "20",
-        'page_number': "1",
+        'page_number': pageNumber,
       },
       returnBody: true,
       encodeBodyUtf8: false,
