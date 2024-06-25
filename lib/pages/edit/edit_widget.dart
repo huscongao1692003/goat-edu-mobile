@@ -1,10 +1,8 @@
 import '/auth/custom_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +31,6 @@ class _EditWidgetState extends State<EditWidget> {
 
     _model.cityTextController ??= TextEditingController();
     _model.cityFocusNode ??= FocusNode();
-
-    _model.myBioTextController ??= TextEditingController();
-    _model.myBioFocusNode ??= FocusNode();
   }
 
   @override
@@ -267,150 +262,6 @@ class _EditWidgetState extends State<EditWidget> {
                     ),
                 validator:
                     _model.cityTextControllerValidator.asValidator(context),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
-              child: FlutterFlowDropDown<String>(
-                controller: _model.stateValueController ??=
-                    FormFieldController<String>(
-                  _model.stateValue ??= 'State',
-                ),
-                options: const [
-                  'State',
-                  'Alabama',
-                  'Alaska',
-                  'Arizona',
-                  'Arkansas',
-                  'California',
-                  'Colorado',
-                  'Connecticut',
-                  'Delaware',
-                  'Florida',
-                  'Georgia',
-                  'Hawaii',
-                  'Idaho',
-                  'Illinoi',
-                  'Indiana',
-                  'Iowa',
-                  'Kansas',
-                  'Kentucky',
-                  'Louisiana',
-                  'Maine',
-                  'Maryland',
-                  'Massachusetts',
-                  'Michigan',
-                  'Minnesota',
-                  'Mississippi',
-                  'Missouri',
-                  'Monta',
-                  'Nebraska',
-                  'Nevada',
-                  'New Hampshire',
-                  'New Jersey',
-                  'New Mexico',
-                  'New York',
-                  'North Carolina',
-                  'North Dak',
-                  'Ohio',
-                  'Oklahoma',
-                  'Oregon',
-                  'Pennsylvani',
-                  'Rhode Island',
-                  'South Caroli',
-                  'South Dakota',
-                  'Tennessee',
-                  'Texas',
-                  'Utah',
-                  'Vermont',
-                  'Virginia',
-                  'Washingto',
-                  'West Virginia',
-                  'Wisconsin',
-                  'Wyoming'
-                ],
-                onChanged: (val) => setState(() => _model.stateValue = val),
-                width: double.infinity,
-                height: 56.0,
-                textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Readex Pro',
-                      letterSpacing: 0.0,
-                    ),
-                hintText: 'Select State',
-                icon: Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 15.0,
-                ),
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                elevation: 2.0,
-                borderColor: FlutterFlowTheme.of(context).alternate,
-                borderWidth: 2.0,
-                borderRadius: 8.0,
-                margin: const EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 12.0, 4.0),
-                hidesUnderline: true,
-                isSearchable: false,
-                isMultiSelect: false,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
-              child: TextFormField(
-                controller: _model.myBioTextController,
-                focusNode: _model.myBioFocusNode,
-                textCapitalization: TextCapitalization.sentences,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                  hintText: 'Your bio',
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  contentPadding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Readex Pro',
-                      letterSpacing: 0.0,
-                    ),
-                textAlign: TextAlign.start,
-                maxLines: 3,
-                validator:
-                    _model.myBioTextControllerValidator.asValidator(context),
               ),
             ),
             Align(

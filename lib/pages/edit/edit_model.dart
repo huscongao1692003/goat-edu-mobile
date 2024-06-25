@@ -1,5 +1,4 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'edit_widget.dart' show EditWidget;
 import 'package:flutter/material.dart';
 
@@ -14,13 +13,6 @@ class EditModel extends FlutterFlowModel<EditWidget> {
   FocusNode? cityFocusNode;
   TextEditingController? cityTextController;
   String? Function(BuildContext, String?)? cityTextControllerValidator;
-  // State field(s) for state widget.
-  String? stateValue;
-  FormFieldController<String>? stateValueController;
-  // State field(s) for myBio widget.
-  FocusNode? myBioFocusNode;
-  TextEditingController? myBioTextController;
-  String? Function(BuildContext, String?)? myBioTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -32,8 +24,5 @@ class EditModel extends FlutterFlowModel<EditWidget> {
 
     cityFocusNode?.dispose();
     cityTextController?.dispose();
-
-    myBioFocusNode?.dispose();
-    myBioTextController?.dispose();
   }
 }

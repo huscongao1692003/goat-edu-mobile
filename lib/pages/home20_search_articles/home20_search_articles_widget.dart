@@ -270,7 +270,18 @@ class _Home20SearchArticlesWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('postdetail');
+                            context.pushNamed(
+                              'postdetail',
+                              queryParameters: {
+                                'discussionId': serializeParam(
+                                  getJsonField(
+                                    listDiscussionItem,
+                                    r'''$.id''',
+                                  ).toString(),
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                            );
                           },
                           child: Container(
                             width: 100.0,
@@ -285,119 +296,145 @@ class _Home20SearchArticlesWidgetState
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            getJsonField(
-                                              listDiscussionItem,
-                                              r'''$.discussionName''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                          Text(
-                                            getJsonField(
-                                              listDiscussionItem,
-                                              r'''$.discussionBody''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 4.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 12.0, 0.0),
-                                                  child: Text(
-                                                    getJsonField(
-                                                      listDiscussionItem,
-                                                      r'''$.userAndSubject.userName''',
-                                                    ).toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 4.0, 0.0),
-                                                  child: Icon(
-                                                    Icons
-                                                        .chat_bubble_outline_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 16.0,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 16.0, 0.0),
-                                                  child: Text(
-                                                    getJsonField(
-                                                      listDiscussionItem,
-                                                      r'''$.commentCount''',
-                                                    ).toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 8.0, 12.0, 0.0),
-                                            child: Text(
-                                              'Read Now',
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'postdetail',
+                                            queryParameters: {
+                                              'discussionId': serializeParam(
+                                                getJsonField(
+                                                  listDiscussionItem,
+                                                  r'''$.id''',
+                                                ).toString(),
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              getJsonField(
+                                                listDiscussionItem,
+                                                r'''$.discussionName''',
+                                              ).toString(),
                                               style: FlutterFlowTheme.of(
                                                       context)
-                                                  .labelSmall
+                                                  .bodyLarge
                                                   .override(
                                                     fontFamily: 'Readex Pro',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
                                                     letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                             ),
-                                          ),
-                                        ].divide(const SizedBox(height: 4.0)),
+                                            Text(
+                                              getJsonField(
+                                                listDiscussionItem,
+                                                r'''$.discussionBody''',
+                                              ).toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyLarge
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                12.0, 0.0),
+                                                    child: Text(
+                                                      getJsonField(
+                                                        listDiscussionItem,
+                                                        r'''$.userAndSubject.userName''',
+                                                      ).toString(),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                4.0, 0.0),
+                                                    child: Icon(
+                                                      Icons
+                                                          .chat_bubble_outline_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 16.0,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                16.0, 0.0),
+                                                    child: Text(
+                                                      getJsonField(
+                                                        listDiscussionItem,
+                                                        r'''$.commentCount''',
+                                                      ).toString(),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 8.0, 12.0, 0.0),
+                                              child: Text(
+                                                'Read Now',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                              ),
+                                            ),
+                                          ].divide(const SizedBox(height: 4.0)),
+                                        ),
                                       ),
                                     ),
                                   ),

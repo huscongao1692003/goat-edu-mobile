@@ -151,7 +151,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'postdetail',
           path: '/postdetail',
-          builder: (context, params) => const PostdetailWidget(),
+          builder: (context, params) => PostdetailWidget(
+            discussionId: params.getParam(
+              'discussionId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

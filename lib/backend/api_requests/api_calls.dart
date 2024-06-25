@@ -27,6 +27,8 @@ class APIAzureGroup {
   static GetFlashcardByIdCall getFlashcardByIdCall = GetFlashcardByIdCall();
   static GetOwnFlashcardCall getOwnFlashcardCall = GetOwnFlashcardCall();
   static UpdateProfileCall updateProfileCall = UpdateProfileCall();
+  static GetEnrolledSubjectCall getEnrolledSubjectCall =
+      GetEnrolledSubjectCall();
 }
 
 class GetSubjectsCall {
@@ -251,6 +253,7 @@ class GetDiscussionsCall {
 class GetDiscussionByIdCall {
   Future<ApiCallResponse> call({
     String? id = '',
+    String? authToken = '',
   }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
@@ -258,7 +261,9 @@ class GetDiscussionByIdCall {
       callName: 'GetDiscussionById',
       apiUrl: '$baseUrl/api/discussion/$id',
       callType: ApiCallType.GET,
-      headers: {},
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -268,6 +273,11 @@ class GetDiscussionByIdCall {
       alwaysAllowBody: false,
     );
   }
+
+  dynamic discussionDetail(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+      );
 }
 
 class GetFlashcarsCall {
@@ -369,6 +379,30 @@ class UpdateProfileCall {
         'FullName': "$fullName",
       },
       bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetEnrolledSubjectCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetEnrolledSubject',
+      apiUrl: '$baseUrl/api/user/enroll',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
