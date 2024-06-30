@@ -29,6 +29,7 @@ class APIAzureGroup {
   static UpdateProfileCall updateProfileCall = UpdateProfileCall();
   static GetEnrolledSubjectCall getEnrolledSubjectCall =
       GetEnrolledSubjectCall();
+  static GetAnswersCall getAnswersCall = GetAnswersCall();
 }
 
 class GetSubjectsCall {
@@ -411,6 +412,41 @@ class GetEnrolledSubjectCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class GetAnswersCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    int? pageNumber,
+    int? pageSize = 5,
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetAnswers',
+      apiUrl: '$baseUrl/api/answer/discussion/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'page_number': pageNumber,
+        'page_size': 5,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic listAnswers(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+      );
 }
 
 /// End API Azure Group Code

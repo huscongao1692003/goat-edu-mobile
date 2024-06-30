@@ -10,10 +10,11 @@ export '/pages/list17_notifications/list17_notifications_widget.dart'
 export '/pages/details34_support_page/details34_support_page_widget.dart'
     show Details34SupportPageWidget;
 export '/pages/edit/edit_widget.dart' show EditWidget;
-export '/pages/subject_detail/subject_detail_widget.dart'
-    show SubjectDetailWidget;
 export '/pages/create3_support_ticket_bug_report/create3_support_ticket_bug_report_widget.dart'
     show Create3SupportTicketBugReportWidget;
 export '/pages/allesson_page/allesson_page_widget.dart' show AllessonPageWidget;
 export '/pages/post/post_widget.dart' show PostWidget;
 export '/pages/postdetail/postdetail_widget.dart' show PostdetailWidget;
+export '/pages/details07_class_list/details07_class_list_widget.dart'
+    show Details07ClassListWidget;
+export '/onboarding/onboarding_widget.dart' show OnboardingWidget;

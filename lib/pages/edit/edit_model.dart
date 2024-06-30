@@ -10,9 +10,17 @@ class EditModel extends FlutterFlowModel<EditWidget> {
   TextEditingController? yourNameTextController;
   String? Function(BuildContext, String?)? yourNameTextControllerValidator;
   // State field(s) for city widget.
-  FocusNode? cityFocusNode;
-  TextEditingController? cityTextController;
-  String? Function(BuildContext, String?)? cityTextControllerValidator;
+  FocusNode? cityFocusNode1;
+  TextEditingController? cityTextController1;
+  String? Function(BuildContext, String?)? cityTextController1Validator;
+  // State field(s) for city widget.
+  FocusNode? cityFocusNode2;
+  TextEditingController? cityTextController2;
+  String? Function(BuildContext, String?)? cityTextController2Validator;
+  // State field(s) for city widget.
+  FocusNode? cityFocusNode3;
+  TextEditingController? cityTextController3;
+  String? Function(BuildContext, String?)? cityTextController3Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -22,7 +30,13 @@ class EditModel extends FlutterFlowModel<EditWidget> {
     yourNameFocusNode?.dispose();
     yourNameTextController?.dispose();
 
-    cityFocusNode?.dispose();
-    cityTextController?.dispose();
+    cityFocusNode1?.dispose();
+    cityTextController1?.dispose();
+
+    cityFocusNode2?.dispose();
+    cityTextController2?.dispose();
+
+    cityFocusNode3?.dispose();
+    cityTextController3?.dispose();
   }
 }

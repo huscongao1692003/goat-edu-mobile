@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'create3_support_ticket_bug_report_widget.dart'
     show Create3SupportTicketBugReportWidget;
@@ -16,6 +17,8 @@ class Create3SupportTicketBugReportModel
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Backend Call - API (ReportBug)] action in Button widget.
+  ApiCallResponse? apiResultv0w;
 
   @override
   void initState(BuildContext context) {}

@@ -1,3 +1,5 @@
+import '/auth/custom_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -237,8 +239,21 @@ class _Create3SupportTicketBugReportWidgetState
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        _model.apiResultv0w =
+                            await APIAzureGroup.reportBugCall.call(
+                          reportTitle: _model.textController1.text,
+                          reportContent: _model.textController2.text,
+                          authToken: currentUserData?.token,
+                        );
+
+                        if ((_model.apiResultv0w?.succeeded ?? true)) {
+                          context.pushNamed('Home12ProjectDashboard');
+                        } else {
+                          context.pushNamed('Home12ProjectDashboard');
+                        }
+
+                        setState(() {});
                       },
                       text: 'Submit Ticket',
                       icon: const Icon(

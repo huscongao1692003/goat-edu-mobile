@@ -383,7 +383,7 @@ class _Home12ProjectDashboardWidgetState
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               context.pushNamed(
-                                'SubjectDetail',
+                                'Details07ClassList',
                                 queryParameters: {
                                   'subjectId': serializeParam(
                                     getJsonField(

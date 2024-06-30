@@ -515,7 +515,7 @@ class _Profile06WidgetState extends State<Profile06Widget> {
                     await authManager.signOut();
                     GoRouter.of(context).clearRedirectLocation();
 
-                    context.goNamedAuth('Auth2', context.mounted);
+                    context.goNamedAuth('Onboarding', context.mounted);
                   },
                   child: Container(
                     width: double.infinity,

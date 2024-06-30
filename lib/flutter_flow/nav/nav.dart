@@ -74,13 +74,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const Auth2Widget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const Auth2Widget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingWidget(),
         ),
         FFRoute(
           name: 'Auth2',
@@ -124,16 +124,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EditWidget(),
         ),
         FFRoute(
-          name: 'SubjectDetail',
-          path: '/subjectDetail',
-          builder: (context, params) => SubjectDetailWidget(
-            subjectId: params.getParam(
-              'subjectId',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'Create3SupportTicketBugReport',
           path: '/create3SupportTicketBugReport',
           builder: (context, params) => const Create3SupportTicketBugReportWidget(),
@@ -157,6 +147,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'Details07ClassList',
+          path: '/details07ClassList',
+          builder: (context, params) => Details07ClassListWidget(
+            subjectId: params.getParam(
+              'subjectId',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'Onboarding',
+          path: '/onboarding',
+          builder: (context, params) => const OnboardingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -327,7 +332,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/auth2';
+            return '/onboarding';
           }
           return null;
         },

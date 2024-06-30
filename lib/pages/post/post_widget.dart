@@ -1,11 +1,13 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_static_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flip_card/flip_card.dart';
+import 'package:mapbox_search/mapbox_search.dart' as mapbox;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'post_model.dart';
 export 'post_model.dart';
 
@@ -39,8 +41,6 @@ class _PostWidgetState extends State<PostWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -248,18 +248,6 @@ class _PostWidgetState extends State<PostWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(18.0),
-                child: Image.network(
-                  FFAppState().imageAvatar,
-                  width: double.infinity,
-                  height: 170.0,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
@@ -302,6 +290,53 @@ class _PostWidgetState extends State<PostWidget> {
                   ),
                 ],
               ),
+            ),
+            FlipCard(
+              fill: Fill.fillBack,
+              direction: FlipDirection.HORIZONTAL,
+              speed: 400,
+              front: Container(),
+              back: Container(
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).tertiary,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(12.0),
+                    bottomRight: Radius.circular(12.0),
+                    topLeft: Radius.circular(12.0),
+                    topRight: Radius.circular(12.0),
+                  ),
+                ),
+                child: Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Text(
+                    'Back',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+              ),
+            ),
+            const FlutterFlowStaticMap(
+              location: LatLng(9.341465, -79.891704),
+              apiKey: 'ENTER_YOUR_MAPBOX_API_KEY_HERE',
+              style: mapbox.MapBoxStyle.Light,
+              width: 300.0,
+              height: 300.0,
+              fit: BoxFit.cover,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(0.0),
+                bottomRight: Radius.circular(0.0),
+                topLeft: Radius.circular(0.0),
+                topRight: Radius.circular(0.0),
+              ),
+              zoom: 12,
+              tilt: 0,
+              rotation: 0,
             ),
           ],
         ),
