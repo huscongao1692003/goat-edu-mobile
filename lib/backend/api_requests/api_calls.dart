@@ -307,6 +307,12 @@ class GetFlashcarsCall {
       alwaysAllowBody: false,
     );
   }
+
+  List? listFlashcard(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+        true,
+      ) as List?;
 }
 
 class GetFlashcardByIdCall {

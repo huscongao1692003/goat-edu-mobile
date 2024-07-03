@@ -122,6 +122,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'Profile06': const Profile06Widget(),
       'Home12ProjectDashboard': const Home12ProjectDashboardWidget(),
       'Home20SearchArticles': const Home20SearchArticlesWidget(),
+      'FlashcardList': const FlashcardListWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -142,7 +143,7 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.face,
+              Icons.tag_faces_outlined,
               size: 24.0,
             ),
             label: 'Home',
@@ -162,7 +163,15 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search,
+              Icons.blur_on_sharp,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.api_rounded,
               size: 24.0,
             ),
             label: 'Home',

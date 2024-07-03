@@ -21,3 +21,6 @@ export '/onboarding/onboarding_widget.dart' show OnboardingWidget;
 export '/pages/success/success_widget.dart' show SuccessWidget;
 export '/pages/quiz/quiz_widget.dart' show QuizWidget;
 export '/pages/note/note_widget.dart' show NoteWidget;
+export '/pages/flashcard/flashcard_widget.dart' show FlashcardWidget;
+export '/pages/flashcard_list/flashcard_list_widget.dart'
+    show FlashcardListWidget;

@@ -186,6 +186,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Note',
           path: '/note',
           builder: (context, params) => const NoteWidget(),
+        ),
+        FFRoute(
+          name: 'Flashcard',
+          path: '/flashcard',
+          builder: (context, params) => const FlashcardWidget(),
+        ),
+        FFRoute(
+          name: 'FlashcardList',
+          path: '/flashcardList',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'FlashcardList')
+              : const FlashcardListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
