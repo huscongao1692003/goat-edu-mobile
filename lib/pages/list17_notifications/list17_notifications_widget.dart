@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'list17_notifications_model.dart';
@@ -236,7 +237,14 @@ class _List17NotificationsWidgetState extends State<List17NotificationsWidget> {
                                                             .fromSTEB(0.0, 8.0,
                                                                 0.0, 4.0),
                                                     child: Text(
-                                                      '2 hours ago',
+                                                      dateTimeFormat(
+                                                          'yMd',
+                                                          functions
+                                                              .convertDateTime(
+                                                                  getJsonField(
+                                                            notificationItem,
+                                                            r'''$.createdAt''',
+                                                          ).toString())),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

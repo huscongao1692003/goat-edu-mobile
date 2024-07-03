@@ -19,3 +19,5 @@ export '/pages/details07_class_list/details07_class_list_widget.dart'
     show Details07ClassListWidget;
 export '/onboarding/onboarding_widget.dart' show OnboardingWidget;
 export '/pages/success/success_widget.dart' show SuccessWidget;
+export '/pages/quiz/quiz_widget.dart' show QuizWidget;
+export '/pages/note/note_widget.dart' show NoteWidget;

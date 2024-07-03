@@ -18,3 +18,11 @@ String convertImagepath(String image) {
 int checkStatusCode(String number) {
   return int.parse(number);
 }
+
+DateTime convertDateTime(String dateString) {
+  final dateFormat = DateFormat('yyyy-MM-dd');
+
+  DateTime date = dateFormat.parse(dateString);
+
+  return date;
+}

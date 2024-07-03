@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'allesson_page_widget.dart' show AllessonPageWidget;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -63,4 +64,20 @@ class AllessonPageModel extends FlutterFlowModel<AllessonPageWidget> {
               : null,
         );
       });
+
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 }

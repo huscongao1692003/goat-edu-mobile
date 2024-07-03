@@ -488,15 +488,19 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                         ),
                                                   ),
                                                   Text(
-                                                    getJsonField(
-                                                      APIAzureGroup
-                                                          .getDiscussionByIdCall
-                                                          .discussionDetail(
-                                                        scrollableContentGetDiscussionByIdResponse
-                                                            .jsonBody,
-                                                      ),
-                                                      r'''$.createdAt''',
-                                                    ).toString(),
+                                                    dateTimeFormat(
+                                                        'yMMMd',
+                                                        functions
+                                                            .convertDateTime(
+                                                                getJsonField(
+                                                          APIAzureGroup
+                                                              .getDiscussionByIdCall
+                                                              .discussionDetail(
+                                                            scrollableContentGetDiscussionByIdResponse
+                                                                .jsonBody,
+                                                          ),
+                                                          r'''$.createdAt''',
+                                                        ).toString())),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .labelSmall
@@ -1209,15 +1213,14 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                getJsonField(
-                                                                  APIAzureGroup
-                                                                      .getDiscussionByIdCall
-                                                                      .discussionDetail(
-                                                                    scrollableContentGetDiscussionByIdResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  r'''$.createdAt''',
-                                                                ).toString(),
+                                                                dateTimeFormat(
+                                                                    'yMMMd',
+                                                                    functions
+                                                                        .convertDateTime(
+                                                                            getJsonField(
+                                                                      listAnserItem,
+                                                                      r'''$.createdAt''',
+                                                                    ).toString())),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelSmall
