@@ -488,6 +488,16 @@ class _Home12ProjectDashboardWidgetState
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
+                                        Text(
+                                          'Chapters',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Colors.white,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
                                       ],
                                     ),
                                   ),

@@ -248,7 +248,7 @@ class _Create3SupportTicketBugReportWidgetState
                         );
 
                         if ((_model.apiResultv0w?.succeeded ?? true)) {
-                          context.pushNamed('Home12ProjectDashboard');
+                          context.pushNamed('Success');
                         } else {
                           context.pushNamed('Home12ProjectDashboard');
                         }

@@ -30,6 +30,8 @@ class APIAzureGroup {
   static GetEnrolledSubjectCall getEnrolledSubjectCall =
       GetEnrolledSubjectCall();
   static GetAnswersCall getAnswersCall = GetAnswersCall();
+  static GetLessonsByChapterCall getLessonsByChapterCall =
+      GetLessonsByChapterCall();
 }
 
 class GetSubjectsCall {
@@ -447,6 +449,42 @@ class GetAnswersCall {
         response,
         r'''$[:]''',
       );
+}
+
+class GetLessonsByChapterCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+    String? id = '',
+    int? pageNumber,
+    int? pageSize = 10,
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetLessonsByChapter',
+      apiUrl: '$baseUrl/api/lesson/chapter/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'page_size': 10,
+        'page_number': pageNumber,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? listLessons(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+        true,
+      ) as List?;
 }
 
 /// End API Azure Group Code

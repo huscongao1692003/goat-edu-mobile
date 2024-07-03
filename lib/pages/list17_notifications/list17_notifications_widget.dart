@@ -79,11 +79,16 @@ class _List17NotificationsWidgetState extends State<List17NotificationsWidget> {
                                 pageSize: 8,
                               ),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            padding: const EdgeInsets.fromLTRB(
+                              0,
+                              8.0,
+                              0,
+                              44.0,
+                            ),
                             shrinkWrap: true,
                             reverse: false,
                             scrollDirection: Axis.vertical,
-                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => const SizedBox(height: 20.0),
                             builderDelegate: PagedChildBuilderDelegate<dynamic>(
                               // Customize what your widget looks like when it's loading the first page.
                               firstPageProgressIndicatorBuilder: (_) => Center(
@@ -266,7 +271,11 @@ class _List17NotificationsWidgetState extends State<List17NotificationsWidget> {
                 ],
               ),
             ),
-            const Spacer(),
+            if (responsiveVisibility(
+              context: context,
+              phone: false,
+            ))
+              const Spacer(),
             FFButtonWidget(
               onPressed: () {
                 print('Button pressed ...');
@@ -290,7 +299,6 @@ class _List17NotificationsWidgetState extends State<List17NotificationsWidget> {
                 borderRadius: BorderRadius.circular(24.0),
               ),
             ),
-            const Spacer(),
           ],
         ),
       ),

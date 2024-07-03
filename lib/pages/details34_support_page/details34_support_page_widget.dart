@@ -442,7 +442,7 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'How do I download Code?',
+                                    'How do I pay for pro subscription?',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
@@ -454,7 +454,7 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
-                                      'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+                                      'To pay for a pro subscription, you need to visit our website at https://goatedu-vercel.com. Once there, you can select the subscription plan that suits your needs and follow the prompts to complete your purchase.',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -493,7 +493,7 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'How do I download Code?',
+                                    'How can I reset my password?',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
@@ -505,7 +505,7 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
-                                      'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+                                      'If you need to reset your password, please follow these steps:\n\nGo to the login page and click on the \"Forgot Password\" link.\nEnter your registered email address.\nYou will receive an email with a link to reset your password.\nClick on the link and follow the instructions to set a new password.',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -544,7 +544,7 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'How do I download Code?',
+                                    'Can I use the app offline?',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
@@ -556,7 +556,7 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
-                                      'Showcase a couple of eye-catching screenshots or mockups of your UI Kit to capture attention and give users a glimpse of what they can expect.',
+                                      'Yes, you can use the app offline. However, some features may require an internet connection to function properly, such as syncing data or accessing online resources.',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -579,8 +579,8 @@ class _Details34SupportPageWidgetState extends State<Details34SupportPageWidget>
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.pushNamed('Create3SupportTicketBugReport');
                   },
                   text: 'Create Ticket',
                   icon: const Icon(

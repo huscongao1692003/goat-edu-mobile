@@ -5,38 +5,31 @@ import 'package:flutter/material.dart';
 class EditModel extends FlutterFlowModel<EditWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for yourName widget.
-  FocusNode? yourNameFocusNode;
-  TextEditingController? yourNameTextController;
-  String? Function(BuildContext, String?)? yourNameTextControllerValidator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode1;
-  TextEditingController? cityTextController1;
-  String? Function(BuildContext, String?)? cityTextController1Validator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode2;
-  TextEditingController? cityTextController2;
-  String? Function(BuildContext, String?)? cityTextController2Validator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode3;
-  TextEditingController? cityTextController3;
-  String? Function(BuildContext, String?)? cityTextController3Validator;
+  // State field(s) for fullname widget.
+  FocusNode? fullnameFocusNode;
+  TextEditingController? fullnameTextController;
+  String? Function(BuildContext, String?)? fullnameTextControllerValidator;
+  // State field(s) for email widget.
+  FocusNode? emailFocusNode;
+  TextEditingController? emailTextController;
+  String? Function(BuildContext, String?)? emailTextControllerValidator;
+  // State field(s) for username widget.
+  FocusNode? usernameFocusNode;
+  TextEditingController? usernameTextController;
+  String? Function(BuildContext, String?)? usernameTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    yourNameFocusNode?.dispose();
-    yourNameTextController?.dispose();
+    fullnameFocusNode?.dispose();
+    fullnameTextController?.dispose();
 
-    cityFocusNode1?.dispose();
-    cityTextController1?.dispose();
+    emailFocusNode?.dispose();
+    emailTextController?.dispose();
 
-    cityFocusNode2?.dispose();
-    cityTextController2?.dispose();
-
-    cityFocusNode3?.dispose();
-    cityTextController3?.dispose();
+    usernameFocusNode?.dispose();
+    usernameTextController?.dispose();
   }
 }

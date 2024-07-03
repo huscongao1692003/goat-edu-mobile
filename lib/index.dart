@@ -18,3 +18,4 @@ export '/pages/postdetail/postdetail_widget.dart' show PostdetailWidget;
 export '/pages/details07_class_list/details07_class_list_widget.dart'
     show Details07ClassListWidget;
 export '/onboarding/onboarding_widget.dart' show OnboardingWidget;
+export '/pages/success/success_widget.dart' show SuccessWidget;

@@ -26,17 +26,14 @@ class _EditWidgetState extends State<EditWidget> {
     super.initState();
     _model = createModel(context, () => EditModel());
 
-    _model.yourNameTextController ??= TextEditingController();
-    _model.yourNameFocusNode ??= FocusNode();
+    _model.fullnameTextController ??= TextEditingController();
+    _model.fullnameFocusNode ??= FocusNode();
 
-    _model.cityTextController1 ??= TextEditingController();
-    _model.cityFocusNode1 ??= FocusNode();
+    _model.emailTextController ??= TextEditingController();
+    _model.emailFocusNode ??= FocusNode();
 
-    _model.cityTextController2 ??= TextEditingController();
-    _model.cityFocusNode2 ??= FocusNode();
-
-    _model.cityTextController3 ??= TextEditingController();
-    _model.cityFocusNode3 ??= FocusNode();
+    _model.usernameTextController ??= TextEditingController();
+    _model.usernameFocusNode ??= FocusNode();
   }
 
   @override
@@ -157,8 +154,8 @@ class _EditWidgetState extends State<EditWidget> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
               child: TextFormField(
-                controller: _model.yourNameTextController,
-                focusNode: _model.yourNameFocusNode,
+                controller: _model.fullnameTextController,
+                focusNode: _model.fullnameFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -209,14 +206,14 @@ class _EditWidgetState extends State<EditWidget> {
                       letterSpacing: 0.0,
                     ),
                 validator:
-                    _model.yourNameTextControllerValidator.asValidator(context),
+                    _model.fullnameTextControllerValidator.asValidator(context),
               ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
               child: TextFormField(
-                controller: _model.cityTextController1,
-                focusNode: _model.cityFocusNode1,
+                controller: _model.emailTextController,
+                focusNode: _model.emailFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -267,18 +264,18 @@ class _EditWidgetState extends State<EditWidget> {
                       letterSpacing: 0.0,
                     ),
                 validator:
-                    _model.cityTextController1Validator.asValidator(context),
+                    _model.emailTextControllerValidator.asValidator(context),
               ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
               child: TextFormField(
-                controller: _model.cityTextController2,
-                focusNode: _model.cityFocusNode2,
+                controller: _model.usernameTextController,
+                focusNode: _model.usernameFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: currentUserData?.email,
+                  labelText: currentUserData?.username,
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,
@@ -325,65 +322,7 @@ class _EditWidgetState extends State<EditWidget> {
                       letterSpacing: 0.0,
                     ),
                 validator:
-                    _model.cityTextController2Validator.asValidator(context),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-              child: TextFormField(
-                controller: _model.cityTextController3,
-                focusNode: _model.cityFocusNode3,
-                textCapitalization: TextCapitalization.words,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: currentUserData?.email,
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  contentPadding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Readex Pro',
-                      letterSpacing: 0.0,
-                    ),
-                validator:
-                    _model.cityTextController3Validator.asValidator(context),
+                    _model.usernameTextControllerValidator.asValidator(context),
               ),
             ),
             Align(

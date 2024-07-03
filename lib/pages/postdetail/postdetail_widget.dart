@@ -1106,13 +1106,10 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                                   .circular(
                                                                       40.0),
                                                           child: Image.network(
-                                                            functions
-                                                                .convertImagepath(
-                                                                    getJsonField(
-                                                              scrollableContentGetDiscussionByIdResponse
-                                                                  .jsonBody,
+                                                            getJsonField(
+                                                              listAnserItem,
                                                               r'''$.userInformation.userImage''',
-                                                            ).toString()),
+                                                            ).toString(),
                                                             width: 40.0,
                                                             height: 40.0,
                                                             fit: BoxFit.cover,

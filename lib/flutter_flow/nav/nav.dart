@@ -131,7 +131,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AllessonPage',
           path: '/allessonPage',
-          builder: (context, params) => const AllessonPageWidget(),
+          builder: (context, params) => AllessonPageWidget(
+            chapterid: params.getParam(
+              'chapterid',
+              ParamType.String,
+            ),
+            chaptername: params.getParam(
+              'chaptername',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'post',
@@ -162,6 +171,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Onboarding',
           path: '/onboarding',
           builder: (context, params) => const OnboardingWidget(),
+        ),
+        FFRoute(
+          name: 'Success',
+          path: '/success',
+          builder: (context, params) => const SuccessWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
