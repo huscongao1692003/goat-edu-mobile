@@ -337,198 +337,149 @@ class _FlashcardListWidgetState extends State<FlashcardListWidget>
                                       return Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 12.0),
-                                        child: Container(
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                blurRadius: 3.0,
-                                                color: Color(0x25090F13),
-                                                offset: Offset(
-                                                  0.0,
-                                                  2.0,
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'FlashcardDetail',
+                                              queryParameters: {
+                                                'flashcardId': serializeParam(
+                                                  getJsonField(
+                                                    listFlashcardItem,
+                                                    r'''$.id''',
+                                                  ).toString(),
+                                                  ParamType.String,
                                                 ),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 8.0, 12.0, 12.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  width: 400.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        blurRadius: 4.0,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(
-                                                          0.0,
-                                                          2.0,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12.0),
-                                                    border: Border.all(
-                                                      color: const Color(0xFFE5E7EB),
-                                                    ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  blurRadius: 3.0,
+                                                  color: Color(0x25090F13),
+                                                  offset: Offset(
+                                                    0.0,
+                                                    2.0,
                                                   ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 8.0,
-                                                                12.0, 8.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  const Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
-                                                                            4.0),
-                                                                    child:
-                                                                        FaIcon(
-                                                                      FontAwesomeIcons
-                                                                          .book,
-                                                                      color: Color(
-                                                                          0xFF5539D2),
-                                                                      size:
-                                                                          24.0,
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      12.0, 8.0, 12.0, 12.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: 400.0,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          blurRadius: 4.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset: Offset(
+                                                            0.0,
+                                                            2.0,
+                                                          ),
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            const Color(0xFFE5E7EB),
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  12.0,
+                                                                  8.0,
+                                                                  12.0,
+                                                                  8.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    const Padding(
+                                                                      padding:
+                                                                          EdgeInsets.all(
+                                                                              4.0),
+                                                                      child:
+                                                                          FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .book,
+                                                                        color: Color(
+                                                                            0xFF5539D2),
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                  Text(
-                                                                    getJsonField(
-                                                                      listFlashcardItem,
-                                                                      r'''$.flashcardName''',
-                                                                    ).toString(),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyLarge
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Figtree',
-                                                                          color:
-                                                                              const Color(0xFF15161E),
-                                                                          fontSize:
-                                                                              16.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
-                                                                  ),
-                                                                ].divide(const SizedBox(
-                                                                    width:
-                                                                        8.0)),
-                                                              ),
-                                                              Text(
-                                                                getJsonField(
-                                                                  listFlashcardItem,
-                                                                  r'''$.flashcardDescription''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Figtree',
-                                                                      color: const Color(
-                                                                          0xFF606A85),
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
+                                                                    Text(
+                                                                      getJsonField(
+                                                                        listFlashcardItem,
+                                                                        r'''$.flashcardName''',
+                                                                      ).toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Figtree',
+                                                                            color:
+                                                                                const Color(0xFF15161E),
+                                                                            fontSize:
+                                                                                16.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
                                                                     ),
-                                                              ),
-                                                              Text(
-                                                                getJsonField(
-                                                                  listFlashcardItem,
-                                                                  r'''$.fullName''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Figtree',
-                                                                      color: const Color(
-                                                                          0xFF606A85),
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                              Text(
-                                                                getJsonField(
-                                                                  listFlashcardItem,
-                                                                  r'''$.numberOfFlashcardContent''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Figtree',
-                                                                      color: const Color(
-                                                                          0xFF606A85),
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                              Align(
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
-                                                                        1.0),
-                                                                child:
-                                                                    GradientText(
+                                                                  ].divide(const SizedBox(
+                                                                      width:
+                                                                          8.0)),
+                                                                ),
+                                                                Text(
                                                                   getJsonField(
                                                                     listFlashcardItem,
-                                                                    r'''$.star''',
+                                                                    r'''$.flashcardDescription''',
                                                                   ).toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -545,58 +496,166 @@ class _FlashcardListWidgetState extends State<FlashcardListWidget>
                                                                         fontWeight:
                                                                             FontWeight.w500,
                                                                       ),
-                                                                  colors: const [
-                                                                    Color(
-                                                                        0xFFEF4339),
-                                                                    Color(
-                                                                        0xFFD2C939)
-                                                                  ],
-                                                                  gradientDirection:
-                                                                      GradientDirection
-                                                                          .ltr,
-                                                                  gradientType:
-                                                                      GradientType
-                                                                          .linear,
                                                                 ),
-                                                              ),
-                                                            ].divide(const SizedBox(
-                                                                height: 4.0)),
+                                                                Text(
+                                                                  getJsonField(
+                                                                    listFlashcardItem,
+                                                                    r'''$.fullName''',
+                                                                  ).toString(),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Figtree',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                                Text(
+                                                                  getJsonField(
+                                                                    listFlashcardItem,
+                                                                    r'''$.numberOfFlashcardContent''',
+                                                                  ).toString(),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Figtree',
+                                                                        color: const Color(
+                                                                            0xFFCE00FF),
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          1.0),
+                                                                  child:
+                                                                      GradientText(
+                                                                    getJsonField(
+                                                                      listFlashcardItem,
+                                                                      r'''$.star''',
+                                                                    ).toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Figtree',
+                                                                          color:
+                                                                              const Color(0xFF606A85),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                    colors: const [
+                                                                      Color(
+                                                                          0xFFEF4339),
+                                                                      Color(
+                                                                          0xFFD2C939)
+                                                                    ],
+                                                                    gradientDirection:
+                                                                        GradientDirection
+                                                                            .ltr,
+                                                                    gradientType:
+                                                                        GradientType
+                                                                            .linear,
+                                                                  ),
+                                                                ),
+                                                              ].divide(const SizedBox(
+                                                                  height: 4.0)),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ].divide(
-                                                          const SizedBox(width: 8.0)),
+                                                        ].divide(const SizedBox(
+                                                            width: 8.0)),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                const Divider(
-                                                  height: 24.0,
-                                                  thickness: 1.0,
-                                                  color: Color(0xFFF1F4F8),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
+                                                  const Divider(
+                                                    height: 24.0,
+                                                    thickness: 1.0,
+                                                    color: Color(0xFFF1F4F8),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            dateTimeFormat(
+                                                                'yMMMd',
+                                                                functions
+                                                                    .convertDateTime(
+                                                                        getJsonField(
+                                                                  listFlashcardItem,
+                                                                  r'''$.updatedAt''',
+                                                                ).toString())),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  color: const Color(
+                                                                      0xFF4B39EF),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        width: 140.0,
+                                                        height: 32.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              const Color(0xFFF1F4F8),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
                                                         child: Text(
-                                                          dateTimeFormat(
-                                                              'yMMMd',
-                                                              functions
-                                                                  .convertDateTime(
-                                                                      getJsonField(
-                                                                listFlashcardItem,
-                                                                r'''$.updatedAt''',
-                                                              ).toString())),
+                                                          getJsonField(
+                                                            listFlashcardItem,
+                                                            r'''$.subjectName''',
+                                                          ).toString(),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -604,7 +663,7 @@ class _FlashcardListWidgetState extends State<FlashcardListWidget>
                                                                 fontFamily:
                                                                     'Plus Jakarta Sans',
                                                                 color: const Color(
-                                                                    0xFF4B39EF),
+                                                                    0xFF14181B),
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -614,45 +673,10 @@ class _FlashcardListWidgetState extends State<FlashcardListWidget>
                                                               ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Container(
-                                                      width: 140.0,
-                                                      height: 32.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            const Color(0xFFF1F4F8),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        getJsonField(
-                                                          listFlashcardItem,
-                                                          r'''$.subjectName''',
-                                                        ).toString(),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Plus Jakarta Sans',
-                                                              color: const Color(
-                                                                  0xFF14181B),
-                                                              fontSize: 14.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ).animateOnPageLoad(animationsMap[

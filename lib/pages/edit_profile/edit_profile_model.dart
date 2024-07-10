@@ -1,8 +1,9 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'edit_widget.dart' show EditWidget;
+import 'edit_profile_widget.dart' show EditProfileWidget;
 import 'package:flutter/material.dart';
 
-class EditModel extends FlutterFlowModel<EditWidget> {
+class EditProfileModel extends FlutterFlowModel<EditProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for fullname widget.
@@ -17,6 +18,12 @@ class EditModel extends FlutterFlowModel<EditWidget> {
   FocusNode? usernameFocusNode;
   TextEditingController? usernameTextController;
   String? Function(BuildContext, String?)? usernameTextControllerValidator;
+  // State field(s) for phonenumber widget.
+  FocusNode? phonenumberFocusNode;
+  TextEditingController? phonenumberTextController;
+  String? Function(BuildContext, String?)? phonenumberTextControllerValidator;
+  // Stores action output result for [Backend Call - API (UpdateProfile)] action in Button widget.
+  ApiCallResponse? apiResult1ei;
 
   @override
   void initState(BuildContext context) {}
@@ -31,5 +38,8 @@ class EditModel extends FlutterFlowModel<EditWidget> {
 
     usernameFocusNode?.dispose();
     usernameTextController?.dispose();
+
+    phonenumberFocusNode?.dispose();
+    phonenumberTextController?.dispose();
   }
 }

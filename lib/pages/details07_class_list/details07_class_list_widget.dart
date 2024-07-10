@@ -170,6 +170,7 @@ class _Details07ClassListWidgetState extends State<Details07ClassListWidget>
                       );
                     }
                     final columnGetSubjectByIdResponse = snapshot.data!;
+
                     return SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -305,6 +306,7 @@ class _Details07ClassListWidgetState extends State<Details07ClassListWidget>
                                   columnGetSubjectByIdResponse.jsonBody,
                                   r'''$.chapters''',
                                 ).toList();
+
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
                                   primary: false,

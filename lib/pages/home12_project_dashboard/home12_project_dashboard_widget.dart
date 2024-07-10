@@ -147,7 +147,7 @@ class _Home12ProjectDashboardWidgetState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 44.0, 16.0, 12.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 50.0, 16.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -620,6 +620,7 @@ class _Home12ProjectDashboardWidgetState
                           );
                         }
                         final tabBarGetSubjectsResponse = snapshot.data!;
+
                         return Column(
                           children: [
                             Align(

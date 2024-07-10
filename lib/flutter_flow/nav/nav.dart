@@ -119,9 +119,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Details34SupportPageWidget(),
         ),
         FFRoute(
-          name: 'edit',
-          path: '/edit',
-          builder: (context, params) => const EditWidget(),
+          name: 'EditProfile',
+          path: '/editProfile',
+          builder: (context, params) => const EditProfileWidget(),
         ),
         FFRoute(
           name: 'Create3SupportTicketBugReport',
@@ -188,16 +188,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const NoteWidget(),
         ),
         FFRoute(
-          name: 'Flashcard',
-          path: '/flashcard',
-          builder: (context, params) => const FlashcardWidget(),
-        ),
-        FFRoute(
           name: 'FlashcardList',
           path: '/flashcardList',
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'FlashcardList')
               : const FlashcardListWidget(),
+        ),
+        FFRoute(
+          name: 'FlashcardDetail',
+          path: '/flashcardDetail',
+          builder: (context, params) => FlashcardDetailWidget(
+            flashcardId: params.getParam(
+              'flashcardId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

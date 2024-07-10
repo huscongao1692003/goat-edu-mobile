@@ -309,7 +309,7 @@ class _Profile06WidgetState extends State<Profile06Widget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('edit');
+                    context.pushNamed('EditProfile');
                   },
                   child: Container(
                     width: double.infinity,

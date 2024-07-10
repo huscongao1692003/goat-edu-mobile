@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
@@ -94,26 +95,6 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 50.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 50.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 50.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(-20.0, 0.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -133,7 +114,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation3': AnimationInfo(
+      'textOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           VisibilityEffect(duration: 50.ms),
@@ -217,6 +198,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                   }
                   final scrollableContentGetDiscussionByIdResponse =
                       snapshot.data!;
+
                   return SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -308,6 +290,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                   ),
                                   r'''$.tags''',
                                 ).toList().take(4).toList();
+
                                 return SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -390,26 +373,19 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation1']!),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 16.0, 16.0),
-                          child: Text(
-                            getJsonField(
-                              APIAzureGroup.getDiscussionByIdCall
-                                  .discussionDetail(
-                                scrollableContentGetDiscussionByIdResponse
-                                    .jsonBody,
-                              ),
-                              r'''$.discussionBody''',
-                            ).toString(),
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation2']!),
+                        FlutterFlowWebView(
+                          content: getJsonField(
+                            APIAzureGroup.getDiscussionByIdCall
+                                .discussionDetail(
+                              scrollableContentGetDiscussionByIdResponse
+                                  .jsonBody,
+                            ),
+                            r'''$.discussionBodyHtml''',
+                          ).toString(),
+                          height: MediaQuery.sizeOf(context).height * 0.1,
+                          verticalScroll: false,
+                          horizontalScroll: false,
+                          html: true,
                         ),
                         Container(
                           width: double.infinity,
@@ -551,7 +527,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                 letterSpacing: 0.0,
                                               ),
                                         ).animateOnPageLoad(animationsMap[
-                                            'textOnPageLoadAnimation3']!),
+                                            'textOnPageLoadAnimation2']!),
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -559,12 +535,22 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Icon(
-                                              Icons.favorite_border,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed('post');
+                                              },
+                                              child: Icon(
+                                                Icons.favorite_border,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 24.0,
+                                              ),
                                             ),
                                             Padding(
                                               padding: const EdgeInsetsDirectional

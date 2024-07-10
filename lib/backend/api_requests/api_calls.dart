@@ -32,6 +32,7 @@ class APIAzureGroup {
   static GetAnswersCall getAnswersCall = GetAnswersCall();
   static GetLessonsByChapterCall getLessonsByChapterCall =
       GetLessonsByChapterCall();
+  static GetNotesCall getNotesCall = GetNotesCall();
 }
 
 class GetSubjectsCall {
@@ -491,6 +492,37 @@ class GetLessonsByChapterCall {
         r'''$[:]''',
         true,
       ) as List?;
+}
+
+class GetNotesCall {
+  Future<ApiCallResponse> call({
+    String? userId = '',
+    int? pageNumber,
+    int? pageSize = 10,
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetNotes',
+      apiUrl: '$baseUrl/api/note/user',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'user_id': userId,
+        'page_size': pageSize,
+        'page_number': pageNumber,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End API Azure Group Code

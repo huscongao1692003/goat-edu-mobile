@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'auth2_model.dart';
 export 'auth2_model.dart';
 
@@ -865,20 +866,23 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: const Text(
-                                                                      'Fail'),
-                                                                  content: const Text(
-                                                                      'Create Accout Fail'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: const Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: const Text(
+                                                                        'Fail'),
+                                                                    content: const Text(
+                                                                        'Create Accout Fail'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: const Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -1475,20 +1479,23 @@ class _Auth2WidgetState extends State<Auth2Widget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: const Text(
-                                                                      'Login Fail'),
-                                                                  content: const Text(
-                                                                      'Wrong username or password'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: const Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: const Text(
+                                                                        'Login Fail'),
+                                                                    content: const Text(
+                                                                        'Wrong username or password'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: const Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );

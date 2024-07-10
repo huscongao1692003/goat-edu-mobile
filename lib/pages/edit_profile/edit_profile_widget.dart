@@ -1,4 +1,5 @@
 import '/auth/custom_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,25 +7,26 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'edit_model.dart';
-export 'edit_model.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
+import 'edit_profile_model.dart';
+export 'edit_profile_model.dart';
 
-class EditWidget extends StatefulWidget {
-  const EditWidget({super.key});
+class EditProfileWidget extends StatefulWidget {
+  const EditProfileWidget({super.key});
 
   @override
-  State<EditWidget> createState() => _EditWidgetState();
+  State<EditProfileWidget> createState() => _EditProfileWidgetState();
 }
 
-class _EditWidgetState extends State<EditWidget> {
-  late EditModel _model;
+class _EditProfileWidgetState extends State<EditProfileWidget> {
+  late EditProfileModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditModel());
+    _model = createModel(context, () => EditProfileModel());
 
     _model.fullnameTextController ??= TextEditingController();
     _model.fullnameFocusNode ??= FocusNode();
@@ -34,6 +36,9 @@ class _EditWidgetState extends State<EditWidget> {
 
     _model.usernameTextController ??= TextEditingController();
     _model.usernameFocusNode ??= FocusNode();
+
+    _model.phonenumberTextController ??= TextEditingController();
+    _model.phonenumberFocusNode ??= FocusNode();
   }
 
   @override
@@ -325,13 +330,115 @@ class _EditWidgetState extends State<EditWidget> {
                     _model.usernameTextControllerValidator.asValidator(context),
               ),
             ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+              child: TextFormField(
+                controller: _model.phonenumberTextController,
+                focusNode: _model.phonenumberFocusNode,
+                textCapitalization: TextCapitalization.words,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: currentUserData?.username,
+                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
+                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).alternate,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primary,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  filled: true,
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  contentPadding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                ),
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Readex Pro',
+                      letterSpacing: 0.0,
+                    ),
+                validator: _model.phonenumberTextControllerValidator
+                    .asValidator(context),
+              ),
+            ),
             Align(
               alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    _model.apiResult1ei =
+                        await APIAzureGroup.updateProfileCall.call(
+                      authToken: currentUserData?.token,
+                      fullName: _model.fullnameTextController.text,
+                    );
+
+                    if ((_model.apiResult1ei?.succeeded ?? true)) {
+                      context.pushNamed(
+                        'Profile06',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                          ),
+                        },
+                      );
+                    } else {
+                      var confirmDialogResponse = await showDialog<bool>(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return WebViewAware(
+                                child: AlertDialog(
+                                  title: const Text('Update Fail'),
+                                  content: const Text(
+                                      'Fail to update profile due to some error'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
+                                      child: const Text('OK'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
+                                      child: const Text('I\'ll Test Again'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ) ??
+                          false;
+                    }
+
+                    setState(() {});
                   },
                   text: 'Save Changes',
                   options: FFButtonOptions(
