@@ -342,7 +342,7 @@ class _Home20SearchArticlesWidgetState
                                                 listDiscussionItem,
                                                 r'''$.discussionBodyHtml''',
                                               ).toString(),
-                                              height: 10.0,
+                                              height: 50.0,
                                               verticalScroll: false,
                                               horizontalScroll: false,
                                               html: true,

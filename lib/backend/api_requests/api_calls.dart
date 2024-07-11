@@ -33,6 +33,9 @@ class APIAzureGroup {
   static GetLessonsByChapterCall getLessonsByChapterCall =
       GetLessonsByChapterCall();
   static GetNotesCall getNotesCall = GetNotesCall();
+  static AnswerDiscussionCall answerDiscussionCall = AnswerDiscussionCall();
+  static VoteDiscussionCall voteDiscussionCall = VoteDiscussionCall();
+  static EnrollSubjectCall enrollSubjectCall = EnrollSubjectCall();
 }
 
 class GetSubjectsCall {
@@ -515,6 +518,92 @@ class GetNotesCall {
         'page_size': pageSize,
         'page_number': pageNumber,
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class AnswerDiscussionCall {
+  Future<ApiCallResponse> call({
+    String? answerBody = '',
+    String? questionId = '',
+    String? authToken = '',
+    String? answerBodyHtml = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "answerBody": "$answerBody",
+  "answerBodyHtml": "$answerBodyHtml",
+  "questionId": "$questionId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'AnswerDiscussion',
+      apiUrl: '$baseUrl/api/answer',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class VoteDiscussionCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'VoteDiscussion',
+      apiUrl: '$baseUrl/api/vote/discussion/$id',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class EnrollSubjectCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+    String? id = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'EnrollSubject',
+      apiUrl: '$baseUrl/api/user/subject/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

@@ -31,4 +31,10 @@ class FFAppState extends ChangeNotifier {
   set imageAvatar(String value) {
     _imageAvatar = value;
   }
+
+  bool _isVotedState = false;
+  bool get isVotedState => _isVotedState;
+  set isVotedState(bool value) {
+    _isVotedState = value;
+  }
 }

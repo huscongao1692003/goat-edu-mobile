@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,19 +5,19 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'success_model.dart';
-export 'success_model.dart';
+import 'success_copy_model.dart';
+export 'success_copy_model.dart';
 
-class SuccessWidget extends StatefulWidget {
-  const SuccessWidget({super.key});
+class SuccessCopyWidget extends StatefulWidget {
+  const SuccessCopyWidget({super.key});
 
   @override
-  State<SuccessWidget> createState() => _SuccessWidgetState();
+  State<SuccessCopyWidget> createState() => _SuccessCopyWidgetState();
 }
 
-class _SuccessWidgetState extends State<SuccessWidget>
+class _SuccessCopyWidgetState extends State<SuccessCopyWidget>
     with TickerProviderStateMixin {
-  late SuccessModel _model;
+  late SuccessCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -27,7 +26,7 @@ class _SuccessWidgetState extends State<SuccessWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SuccessModel());
+    _model = createModel(context, () => SuccessCopyModel());
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -295,11 +294,10 @@ class _SuccessWidgetState extends State<SuccessWidget>
                                   width: 120.0,
                                   height: 120.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).accent2,
+                                    color: FlutterFlowTheme.of(context).error,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent2,
+                                      color: FlutterFlowTheme.of(context).error,
                                       width: 4.0,
                                     ),
                                   ),
@@ -309,19 +307,19 @@ class _SuccessWidgetState extends State<SuccessWidget>
                                       width: 140.0,
                                       height: 140.0,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
-                                              .accent2,
+                                              .error,
                                           width: 4.0,
                                         ),
                                       ),
                                       child: Icon(
-                                        Icons.check_rounded,
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
+                                        Icons.error_outline_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
                                         size: 64.0,
                                       ),
                                     ),
@@ -333,7 +331,7 @@ class _SuccessWidgetState extends State<SuccessWidget>
                             Align(
                               alignment: const AlignmentDirectional(0.0, -1.0),
                               child: Text(
-                                'Congrats!',
+                                'Oops  :((',
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
@@ -358,7 +356,7 @@ class _SuccessWidgetState extends State<SuccessWidget>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Thank you 😉😉😉',
+                                      'Some things has error ',
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -367,30 +365,13 @@ class _SuccessWidgetState extends State<SuccessWidget>
                                           ),
                                     ),
                                     Text(
-                                      valueOrDefault<String>(
-                                        currentUserData?.fullname,
-                                        'UserName',
-                                      ),
+                                      'Please try again or report to us',
                                       textAlign: TextAlign.end,
                                       style: FlutterFlowTheme.of(context)
                                           .headlineSmall
                                           .override(
                                             fontFamily: 'Outfit',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Text(
-                                      valueOrDefault<String>(
-                                        currentUserData?.email,
-                                        'gmail@gmail.com',
-                                      ),
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -423,26 +404,6 @@ class _SuccessWidgetState extends State<SuccessWidget>
                                                   ),
                                                 ),
                                               ),
-                                              Container(
-                                                width: 44.0,
-                                                height: 44.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Icon(
-                                                  Icons
-                                                      .playlist_add_check_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .info,
-                                                  size: 32.0,
-                                                ),
-                                              ),
                                             ],
                                           ),
                                         ].divide(const SizedBox(width: 12.0)),
@@ -457,9 +418,9 @@ class _SuccessWidgetState extends State<SuccessWidget>
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                context.safePop();
+                                context.pushNamed('Home12ProjectDashboard');
                               },
-                              text: 'Go',
+                              text: 'OK',
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 48.0,
@@ -467,7 +428,7 @@ class _SuccessWidgetState extends State<SuccessWidget>
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).error,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(

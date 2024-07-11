@@ -3,6 +3,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -10,8 +11,10 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'postdetail_model.dart';
 export 'postdetail_model.dart';
 
@@ -76,7 +79,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation1': AnimationInfo(
+      'textOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -114,26 +117,6 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation2': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          VisibilityEffect(duration: 50.ms),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 50.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 50.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(-20.0, 0.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
       'containerOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -165,6 +148,8 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -371,7 +356,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                   fontWeight: FontWeight.w600,
                                 ),
                           ).animateOnPageLoad(
-                              animationsMap['textOnPageLoadAnimation1']!),
+                              animationsMap['textOnPageLoadAnimation']!),
                         ),
                         FlutterFlowWebView(
                           content: getJsonField(
@@ -510,46 +495,50 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 16.0),
-                                        child: Text(
-                                          getJsonField(
-                                            APIAzureGroup.getDiscussionByIdCall
-                                                .discussionDetail(
-                                              scrollableContentGetDiscussionByIdResponse
-                                                  .jsonBody,
-                                            ),
-                                            r'''$.isSolved''',
-                                          ).toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ).animateOnPageLoad(animationsMap[
-                                            'textOnPageLoadAnimation2']!),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.pushNamed('post');
+                                            ToggleIcon(
+                                              onPressed: () async {
+                                                setState(() => FFAppState()
+                                                        .isVotedState =
+                                                    !FFAppState().isVotedState);
+                                                _model.apiResultec7 =
+                                                    await APIAzureGroup
+                                                        .voteDiscussionCall
+                                                        .call(
+                                                  id: widget.discussionId,
+                                                  authToken:
+                                                      currentUserData?.token,
+                                                );
+
+                                                if ((_model.apiResultec7
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  FFAppState().isVotedState =
+                                                      true;
+                                                  setState(() {});
+                                                } else {
+                                                  HapticFeedback.lightImpact();
+                                                }
+
+                                                setState(() {});
                                               },
-                                              child: Icon(
+                                              value: FFAppState().isVotedState,
+                                              onIcon: Icon(
+                                                Icons.favorite_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 25.0,
+                                              ),
+                                              offIcon: Icon(
                                                 Icons.favorite_border,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
-                                                size: 24.0,
+                                                size: 25.0,
                                               ),
                                             ),
                                             Padding(
@@ -951,9 +940,44 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                           ],
                                                         ),
                                                         FFButtonWidget(
-                                                          onPressed: () {
-                                                            print(
-                                                                'Button pressed ...');
+                                                          onPressed: () async {
+                                                            _model.apiResultz3v =
+                                                                await APIAzureGroup
+                                                                    .answerDiscussionCall
+                                                                    .call(
+                                                              questionId: widget
+                                                                  .discussionId,
+                                                              answerBodyHtml: _model
+                                                                  .textController
+                                                                  .text,
+                                                              authToken:
+                                                                  currentUserData
+                                                                      ?.token,
+                                                            );
+
+                                                            if ((_model
+                                                                    .apiResultz3v
+                                                                    ?.succeeded ??
+                                                                true)) {
+                                                              context.pushNamed(
+                                                                'postdetail',
+                                                                queryParameters:
+                                                                    {
+                                                                  'discussionId':
+                                                                      serializeParam(
+                                                                    widget
+                                                                        .discussionId,
+                                                                    ParamType
+                                                                        .String,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+                                                            } else {
+                                                              context.pushNamed(
+                                                                  'Home20SearchArticles');
+                                                            }
+
+                                                            setState(() {});
                                                           },
                                                           text: 'Comment',
                                                           options:

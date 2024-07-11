@@ -25,3 +25,4 @@ export '/pages/flashcard_list/flashcard_list_widget.dart'
     show FlashcardListWidget;
 export '/pages/flashcard_detail/flashcard_detail_widget.dart'
     show FlashcardDetailWidget;
+export '/pages/success_copy/success_copy_widget.dart' show SuccessCopyWidget;

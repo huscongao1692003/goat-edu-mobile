@@ -338,7 +338,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: currentUserData?.username,
+                  labelText: '0888888888',
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,

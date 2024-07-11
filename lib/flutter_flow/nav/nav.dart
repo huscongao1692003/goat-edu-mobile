@@ -203,6 +203,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'SuccessCopy',
+          path: '/successCopy',
+          builder: (context, params) => const SuccessCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

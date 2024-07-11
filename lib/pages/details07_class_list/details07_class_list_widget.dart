@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -454,8 +455,20 @@ class _Details07ClassListWidgetState extends State<Details07ClassListWidget>
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    _model.apiResult8ss =
+                        await APIAzureGroup.enrollSubjectCall.call(
+                      authToken: currentUserData?.token,
+                      id: widget.subjectId,
+                    );
+
+                    if ((_model.apiResult8ss?.succeeded ?? true)) {
+                      context.pushNamed('Success');
+                    } else {
+                      context.pushNamed('SuccessCopy');
+                    }
+
+                    setState(() {});
                   },
                   text: 'Enroll in Class',
                   options: FFButtonOptions(
