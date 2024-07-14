@@ -2,6 +2,7 @@ import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
@@ -661,298 +662,328 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
-                      child: Container(
-                        constraints: const BoxConstraints(
-                          maxWidth: 900.0,
+                      child: FutureBuilder<ApiCallResponse>(
+                        future: APIAzureGroup.getQuizLessonCall.call(
+                          lessonId: widget.lessonId,
+                          authToken: currentUserData?.token,
+                          type: 'lesson',
                         ),
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 12.0, 0.0, 12.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'Lesson',
-                                        style: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              color: const Color(0xFF15161E),
-                                              fontSize: 36.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                    ),
-                                  ],
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Align(
-                                      alignment: const Alignment(-1.0, 0),
-                                      child: FlutterFlowButtonTabBar(
-                                        useToggleButtonStyle: false,
-                                        isScrollable: true,
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily: 'Plus Jakarta Sans',
-                                              color: const Color(0xFF15161E),
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                        unselectedLabelStyle:
-                                            FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily:
-                                                      'Plus Jakarta Sans',
-                                                  color: const Color(0xFF606A85),
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                        labelColor: const Color(0xFF15161E),
-                                        unselectedLabelColor: const Color(0xFF606A85),
-                                        backgroundColor: const Color(0x4D9489F5),
-                                        unselectedBackgroundColor: Colors.white,
-                                        borderColor: const Color(0xFF6F61EF),
-                                        borderWidth: 2.0,
-                                        borderRadius: 12.0,
-                                        elevation: 0.0,
-                                        labelPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                16.0, 0.0, 16.0, 0.0),
-                                        buttonMargin:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 16.0, 0.0),
-                                        tabs: const [
-                                          Tab(
-                                            text: 'Introduction',
-                                          ),
-                                          Tab(
-                                            text: 'Quiz',
-                                          ),
-                                          Tab(
-                                            text: 'Theory',
-                                          ),
-                                        ],
-                                        controller: _model.tabBarController,
-                                        onTap: (i) async {
-                                          [
-                                            () async {},
-                                            () async {},
-                                            () async {}
-                                          ][i]();
-                                        },
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: TabBarView(
-                                        controller: _model.tabBarController,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 16.0),
-                                            child:
-                                                FutureBuilder<ApiCallResponse>(
-                                              future: APIAzureGroup
-                                                  .lessonDetailCall
-                                                  .call(
-                                                id: widget.lessonId,
-                                                authToken:
-                                                    currentUserData?.token,
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50.0,
-                                                      height: 50.0,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        valueColor:
-                                                            AlwaysStoppedAnimation<
-                                                                Color>(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                final card27VideoLessonDetailResponse =
-                                                    snapshot.data!;
+                            );
+                          }
+                          final middleGetQuizLessonResponse = snapshot.data!;
 
-                                                return Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        blurRadius: 4.0,
-                                                        color:
-                                                            Color(0x2B202529),
-                                                        offset: Offset(
-                                                          0.0,
-                                                          2.0,
-                                                        ),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
+                          return Container(
+                            constraints: const BoxConstraints(
+                              maxWidth: 900.0,
+                            ),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 0.0, 12.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            'Lesson',
+                                            style: FlutterFlowTheme.of(context)
+                                                .displaySmall
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  color: const Color(0xFF15161E),
+                                                  fontSize: 36.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Align(
+                                          alignment: const Alignment(-1.0, 0),
+                                          child: FlutterFlowButtonTabBar(
+                                            useToggleButtonStyle: false,
+                                            isScrollable: true,
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          'Plus Jakarta Sans',
+                                                      color: const Color(0xFF15161E),
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                            unselectedLabelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily:
+                                                          'Plus Jakarta Sans',
+                                                      color: const Color(0xFF606A85),
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                            labelColor: const Color(0xFF15161E),
+                                            unselectedLabelColor:
+                                                const Color(0xFF606A85),
+                                            backgroundColor: const Color(0x4D9489F5),
+                                            unselectedBackgroundColor:
+                                                Colors.white,
+                                            borderColor: const Color(0xFF6F61EF),
+                                            borderWidth: 2.0,
+                                            borderRadius: 12.0,
+                                            elevation: 0.0,
+                                            labelPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            buttonMargin:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 16.0, 0.0),
+                                            tabs: const [
+                                              Tab(
+                                                text: 'Introduction',
+                                              ),
+                                              Tab(
+                                                text: 'Quiz',
+                                              ),
+                                              Tab(
+                                                text: 'Theory',
+                                              ),
+                                            ],
+                                            controller: _model.tabBarController,
+                                            onTap: (i) async {
+                                              [
+                                                () async {},
+                                                () async {},
+                                                () async {}
+                                              ][i]();
+                                            },
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: TabBarView(
+                                            controller: _model.tabBarController,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 16.0),
+                                                child: FutureBuilder<
+                                                    ApiCallResponse>(
+                                                  future: APIAzureGroup
+                                                      .lessonDetailCall
+                                                      .call(
+                                                    id: widget.lessonId,
+                                                    authToken:
+                                                        currentUserData?.token,
                                                   ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(12.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Row(
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    final card27VideoLessonDetailResponse =
+                                                        snapshot.data!;
+
+                                                    return Container(
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 4.0,
+                                                            color: Color(
+                                                                0x2B202529),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(
+                                                            12.0),
+                                                        child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
-                                                            Expanded(
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                child: Text(
-                                                                  getJsonField(
-                                                                    APIAzureGroup
-                                                                        .lessonDetailCall
-                                                                        .lessonDetailData(
-                                                                      card27VideoLessonDetailResponse
-                                                                          .jsonBody,
+                                                                    child: Text(
+                                                                      getJsonField(
+                                                                        APIAzureGroup
+                                                                            .lessonDetailCall
+                                                                            .lessonDetailData(
+                                                                          card27VideoLessonDetailResponse
+                                                                              .jsonBody,
+                                                                        ),
+                                                                        r'''$.lessonName''',
+                                                                      ).toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Plus Jakarta Sans',
+                                                                            color:
+                                                                                const Color(0xFF14181B),
+                                                                            fontSize:
+                                                                                16.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
                                                                     ),
-                                                                    r'''$.lessonName''',
-                                                                  ).toString(),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Plus Jakarta Sans',
-                                                                        color: const Color(
-                                                                            0xFF14181B),
-                                                                        fontSize:
-                                                                            16.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
+                                                                  ),
                                                                 ),
+                                                              ],
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                getJsonField(
+                                                                  APIAzureGroup
+                                                                      .lessonDetailCall
+                                                                      .lessonDetailData(
+                                                                    card27VideoLessonDetailResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  r'''$.lessonBody''',
+                                                                ).toString(),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      color: const Color(
+                                                                          0xFF57636C),
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
                                                               ),
                                                             ),
-                                                          ],
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      16.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            getJsonField(
-                                                              APIAzureGroup
-                                                                  .lessonDetailCall
-                                                                  .lessonDetailData(
-                                                                card27VideoLessonDetailResponse
-                                                                    .jsonBody,
+                                                            const Divider(
+                                                              height: 24.0,
+                                                              thickness: 2.0,
+                                                              color: Color(
+                                                                  0xFFF1F4F8),
+                                                            ),
+                                                            FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                await launchURL(
+                                                                    getJsonField(
+                                                                  rowGetTheoryLessonResponse
+                                                                      .jsonBody,
+                                                                  r'''$[:].file''',
+                                                                ).toString());
+                                                              },
+                                                              text: 'Download',
+                                                              icon: const Icon(
+                                                                Icons
+                                                                    .cloud_download_rounded,
+                                                                size: 15.0,
                                                               ),
-                                                              r'''$.lessonBody''',
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Plus Jakarta Sans',
-                                                                  color: const Color(
-                                                                      0xFF57636C),
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        const Divider(
-                                                          height: 24.0,
-                                                          thickness: 2.0,
-                                                          color:
-                                                              Color(0xFFF1F4F8),
-                                                        ),
-                                                        FFButtonWidget(
-                                                          onPressed: () async {
-                                                            await launchURL(
-                                                                getJsonField(
-                                                              rowGetTheoryLessonResponse
-                                                                  .jsonBody,
-                                                              r'''$[:].file''',
-                                                            ).toString());
-                                                          },
-                                                          text: 'Download',
-                                                          icon: const Icon(
-                                                            Icons
-                                                                .cloud_download_rounded,
-                                                            size: 15.0,
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 130.0,
-                                                            height: 36.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: const Color(
-                                                                0x4C4B39EF),
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 130.0,
+                                                                height: 36.0,
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: const Color(
+                                                                    0x4C4B39EF),
+                                                                textStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleSmall
                                                                     .override(
@@ -968,613 +999,208 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                                                                           FontWeight
                                                                               .w500,
                                                                     ),
-                                                            elevation: 0.0,
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFF4B39EF),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        12.0),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 16.0, 0.0, 16.0),
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  border: Border.all(
-                                                    color: const Color(0xFFE5E7EB),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(16.0, 24.0,
-                                                          16.0, 24.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          const Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .library_add_check_rounded,
-                                                              color: Color(
-                                                                  0xFF6F61EF),
-                                                              size: 36.0,
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'Due this week',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Outfit',
-                                                                      color: const Color(
-                                                                          0xFF15161E),
-                                                                      fontSize:
-                                                                          22.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            height: 32.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: const Color(
-                                                                  0xFFF1F4F8),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                '12',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Plus Jakarta Sans',
-                                                                      color: const Color(
-                                                                          0xFF15161E),
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    8.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: ListView(
-                                                          padding:
-                                                              EdgeInsets.zero,
-                                                          shrinkWrap: true,
-                                                          scrollDirection:
-                                                              Axis.vertical,
-                                                          children: [
-                                                            Container(
-                                                              width: 100.0,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Theme(
-                                                                      data:
-                                                                          ThemeData(
-                                                                        checkboxTheme:
-                                                                            CheckboxThemeData(
-                                                                          shape:
-                                                                              RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(4.0),
-                                                                          ),
-                                                                        ),
-                                                                        unselectedWidgetColor:
-                                                                            const Color(0xFFE0E3E7),
-                                                                      ),
-                                                                      child:
-                                                                          Checkbox(
-                                                                        value: _model.checkboxValue1 ??=
-                                                                            true,
-                                                                        onChanged:
-                                                                            (newValue) async {
-                                                                          setState(() =>
-                                                                              _model.checkboxValue1 = newValue!);
-                                                                        },
-                                                                        side:
-                                                                            const BorderSide(
-                                                                          width:
-                                                                              2,
-                                                                          color:
-                                                                              Color(0xFFE0E3E7),
-                                                                        ),
-                                                                        activeColor:
-                                                                            const Color(0xFF6F61EF),
-                                                                        checkColor:
-                                                                            Colors.white,
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                12.0,
-                                                                                8.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Update our command Palette to be more usable.',
-                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                    fontFamily: 'Plus Jakarta Sans',
-                                                                                    color: const Color(0xFF15161E),
-                                                                                    fontSize: 16.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 0.0),
-                                                                                child: Text(
-                                                                                  '18 Jan, 2023',
-                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Plus Jakarta Sans',
-                                                                                        color: const Color(0xFF606A85),
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                                                                child: Container(
-                                                                                  height: 28.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: const Color(0xFFF1F4F8),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                  child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                    child: Text(
-                                                                                      'Product',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Plus Jakarta Sans',
-                                                                                            color: const Color(0xFF15161E),
-                                                                                            fontSize: 14.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FontWeight.w500,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
+                                                                elevation: 0.0,
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFF4B39EF),
+                                                                  width: 2.0,
                                                                 ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width: 100.0,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Theme(
-                                                                      data:
-                                                                          ThemeData(
-                                                                        checkboxTheme:
-                                                                            CheckboxThemeData(
-                                                                          shape:
-                                                                              RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(4.0),
-                                                                          ),
-                                                                        ),
-                                                                        unselectedWidgetColor:
-                                                                            const Color(0xFF606A85),
-                                                                      ),
-                                                                      child:
-                                                                          Checkbox(
-                                                                        value: _model.checkboxValue2 ??=
-                                                                            false,
-                                                                        onChanged:
-                                                                            (newValue) async {
-                                                                          setState(() =>
-                                                                              _model.checkboxValue2 = newValue!);
-                                                                        },
-                                                                        side:
-                                                                            const BorderSide(
-                                                                          width:
-                                                                              2,
-                                                                          color:
-                                                                              Color(0xFF606A85),
-                                                                        ),
-                                                                        activeColor:
-                                                                            const Color(0xFF6F61EF),
-                                                                        checkColor:
-                                                                            Colors.white,
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                12.0,
-                                                                                8.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Build out a design system in FlutterFlow',
-                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                    fontFamily: 'Plus Jakarta Sans',
-                                                                                    color: const Color(0xFF15161E),
-                                                                                    fontSize: 16.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.w500,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 0.0),
-                                                                                child: Text(
-                                                                                  '16 Jan, 2023',
-                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Plus Jakarta Sans',
-                                                                                        color: const Color(0xFF606A85),
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                                                                child: Container(
-                                                                                  height: 28.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: const Color(0xFFF1F4F8),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                  child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                    child: Text(
-                                                                                      'Design System',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Plus Jakarta Sans',
-                                                                                            color: const Color(0xFF15161E),
-                                                                                            fontSize: 14.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FontWeight.w500,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Container(
-                                                              width: 100.0,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            12.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Theme(
-                                                                      data:
-                                                                          ThemeData(
-                                                                        checkboxTheme:
-                                                                            CheckboxThemeData(
-                                                                          shape:
-                                                                              RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(4.0),
-                                                                          ),
-                                                                        ),
-                                                                        unselectedWidgetColor:
-                                                                            const Color(0xFF606A85),
-                                                                      ),
-                                                                      child:
-                                                                          Checkbox(
-                                                                        value: _model.checkboxValue3 ??=
-                                                                            false,
-                                                                        onChanged:
-                                                                            (newValue) async {
-                                                                          setState(() =>
-                                                                              _model.checkboxValue3 = newValue!);
-                                                                        },
-                                                                        side:
-                                                                            const BorderSide(
-                                                                          width:
-                                                                              2,
-                                                                          color:
-                                                                              Color(0xFF606A85),
-                                                                        ),
-                                                                        activeColor:
-                                                                            const Color(0xFF6F61EF),
-                                                                        checkColor:
-                                                                            Colors.white,
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                12.0,
-                                                                                8.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              'Complete 100 Templates',
-                                                                              style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                    fontFamily: 'Plus Jakarta Sans',
-                                                                                    color: const Color(0xFF15161E),
-                                                                                    fontSize: 16.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 0.0, 0.0),
-                                                                                child: Text(
-                                                                                  '15 Jan, 2023',
-                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Plus Jakarta Sans',
-                                                                                        color: const Color(0xFF606A85),
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                                                                child: Container(
-                                                                                  height: 28.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: const Color(0xFFF1F4F8),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                                                                  child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                                                                                    child: Text(
-                                                                                      'FF Development',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Plus Jakarta Sans',
-                                                                                            color: const Color(0xFF15161E),
-                                                                                            fontSize: 14.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FontWeight.w500,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
                                                               ),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    );
+                                                  },
                                                 ),
                                               ),
-                                            ),
+                                              Builder(
+                                                builder: (context) {
+                                                  final listQuestionAnswer =
+                                                      APIAzureGroup
+                                                          .getQuizLessonCall
+                                                          .quizList(
+                                                            middleGetQuizLessonResponse
+                                                                .jsonBody,
+                                                          )
+                                                          .toList();
+
+                                                  return FlutterFlowDataTable<
+                                                      dynamic>(
+                                                    controller: _model
+                                                        .paginatedDataTableController,
+                                                    data: listQuestionAnswer,
+                                                    columnsBuilder:
+                                                        (onSortChanged) => [
+                                                      DataColumn2(
+                                                        label: DefaultTextStyle
+                                                            .merge(
+                                                          softWrap: true,
+                                                          child: Text(
+                                                            'Question',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      DataColumn2(
+                                                        label: DefaultTextStyle
+                                                            .merge(
+                                                          softWrap: true,
+                                                          child: Text(
+                                                            'Answer',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                    dataRowBuilder:
+                                                        (listQuestionAnswerItem,
+                                                                listQuestionAnswerIndex,
+                                                                selected,
+                                                                onSelectChanged) =>
+                                                            DataRow(
+                                                      color:
+                                                          WidgetStateProperty
+                                                              .all(
+                                                        listQuestionAnswerIndex %
+                                                                    2 ==
+                                                                0
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBackground,
+                                                      ),
+                                                      cells: [
+                                                        Text(
+                                                          getJsonField(
+                                                            APIAzureGroup
+                                                                .getQuizLessonCall
+                                                                .quizList(
+                                                              middleGetQuizLessonResponse
+                                                                  .jsonBody,
+                                                            ),
+                                                            r'''$[:].quizQuestion''',
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          getJsonField(
+                                                            APIAzureGroup
+                                                                .getQuizLessonCall
+                                                                .quizList(
+                                                              middleGetQuizLessonResponse
+                                                                  .jsonBody,
+                                                            ),
+                                                            r'''$[:].quizCorrect''',
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ]
+                                                          .map((c) =>
+                                                              DataCell(c))
+                                                          .toList(),
+                                                    ),
+                                                    paginated: true,
+                                                    selectable: false,
+                                                    hidePaginator: true,
+                                                    showFirstLastButtons: false,
+                                                    headingRowHeight: 56.0,
+                                                    dataRowHeight: 48.0,
+                                                    columnSpacing: 20.0,
+                                                    headingRowColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    addHorizontalDivider: true,
+                                                    addTopAndBottomDivider:
+                                                        false,
+                                                    hideDefaultHorizontalDivider:
+                                                        true,
+                                                    horizontalDividerColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryBackground,
+                                                    horizontalDividerThickness:
+                                                        1.0,
+                                                    addVerticalDivider: false,
+                                                  );
+                                                },
+                                              ),
+                                              FlutterFlowWebView(
+                                                content: getJsonField(
+                                                  rowGetTheoryLessonResponse
+                                                      .jsonBody,
+                                                  r'''$[:].theoryContent''',
+                                                ).toString(),
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        1.0,
+                                                verticalScroll: false,
+                                                horizontalScroll: false,
+                                                html: true,
+                                              ),
+                                            ],
                                           ),
-                                          FlutterFlowWebView(
-                                            content: getJsonField(
-                                              rowGetTheoryLessonResponse
-                                                  .jsonBody,
-                                              r'''$[:].theoryContent''',
-                                            ).toString(),
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                1.0,
-                                            verticalScroll: false,
-                                            horizontalScroll: false,
-                                            html: true,
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

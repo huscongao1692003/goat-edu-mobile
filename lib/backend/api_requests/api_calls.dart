@@ -38,6 +38,7 @@ class APIAzureGroup {
   static EnrollSubjectCall enrollSubjectCall = EnrollSubjectCall();
   static LessonDetailCall lessonDetailCall = LessonDetailCall();
   static GetTheoryLessonCall getTheoryLessonCall = GetTheoryLessonCall();
+  static GetQuizLessonCall getQuizLessonCall = GetQuizLessonCall();
 }
 
 class GetSubjectsCall {
@@ -669,6 +670,40 @@ class GetTheoryLessonCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class GetQuizLessonCall {
+  Future<ApiCallResponse> call({
+    String? lessonId = '',
+    String? authToken = '',
+    String? type = 'lesson',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetQuizLesson',
+      apiUrl: '$baseUrl/api/quiz',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'id': lessonId,
+        'type': type,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic quizList(dynamic response) => getJsonField(
+        response,
+        r'''$[:].questionInQuizzes''',
+      );
 }
 
 /// End API Azure Group Code

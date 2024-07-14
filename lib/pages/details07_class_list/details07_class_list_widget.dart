@@ -1,10 +1,8 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -450,45 +448,6 @@ class _Details07ClassListWidgetState extends State<Details07ClassListWidget>
                       ),
                     );
                   },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    _model.apiResult8ss =
-                        await APIAzureGroup.enrollSubjectCall.call(
-                      authToken: currentUserData?.token,
-                      id: widget.subjectId,
-                    );
-
-                    if ((_model.apiResult8ss?.succeeded ?? true)) {
-                      context.pushNamed('Success');
-                    } else {
-                      context.pushNamed('SuccessCopy');
-                    }
-
-                    setState(() {});
-                  },
-                  text: 'Enroll in Class',
-                  options: FFButtonOptions(
-                    width: double.infinity,
-                    height: 52.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle:
-                        FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
                 ),
               ),
             ],
