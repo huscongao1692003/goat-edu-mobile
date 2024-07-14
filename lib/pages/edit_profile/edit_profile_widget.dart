@@ -220,6 +220,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 controller: _model.emailTextController,
                 focusNode: _model.emailFocusNode,
                 textCapitalization: TextCapitalization.words,
+                readOnly: true,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelText: currentUserData?.email,
@@ -278,6 +279,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 controller: _model.usernameTextController,
                 focusNode: _model.usernameFocusNode,
                 textCapitalization: TextCapitalization.words,
+                readOnly: true,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelText: currentUserData?.username,
@@ -338,7 +340,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: '0888888888',
+                  labelText: currentUserData?.phoneNumber,
                   labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily: 'Readex Pro',
                         letterSpacing: 0.0,
@@ -398,6 +400,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                         await APIAzureGroup.updateProfileCall.call(
                       authToken: currentUserData?.token,
                       fullName: _model.fullnameTextController.text,
+                      phoneNumber: _model.phonenumberTextController.text,
                     );
 
                     if ((_model.apiResult1ei?.succeeded ?? true)) {

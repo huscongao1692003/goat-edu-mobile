@@ -13,7 +13,6 @@ export '/pages/edit_profile/edit_profile_widget.dart' show EditProfileWidget;
 export '/pages/create3_support_ticket_bug_report/create3_support_ticket_bug_report_widget.dart'
     show Create3SupportTicketBugReportWidget;
 export '/pages/allesson_page/allesson_page_widget.dart' show AllessonPageWidget;
-export '/pages/post/post_widget.dart' show PostWidget;
 export '/pages/postdetail/postdetail_widget.dart' show PostdetailWidget;
 export '/pages/details07_class_list/details07_class_list_widget.dart'
     show Details07ClassListWidget;
@@ -26,3 +25,5 @@ export '/pages/flashcard_list/flashcard_list_widget.dart'
 export '/pages/flashcard_detail/flashcard_detail_widget.dart'
     show FlashcardDetailWidget;
 export '/pages/success_copy/success_copy_widget.dart' show SuccessCopyWidget;
+export '/pages/chapter/chapter_widget.dart' show ChapterWidget;
+export '/pages/lesson_detail/lesson_detail_widget.dart' show LessonDetailWidget;

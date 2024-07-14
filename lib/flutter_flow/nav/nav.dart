@@ -143,11 +143,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'post',
-          path: '/post',
-          builder: (context, params) => const PostWidget(),
-        ),
-        FFRoute(
           name: 'postdetail',
           path: '/postdetail',
           builder: (context, params) => PostdetailWidget(
@@ -208,6 +203,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SuccessCopy',
           path: '/successCopy',
           builder: (context, params) => const SuccessCopyWidget(),
+        ),
+        FFRoute(
+          name: 'Chapter',
+          path: '/chapter',
+          builder: (context, params) => ChapterWidget(
+            chapterid: params.getParam(
+              'chapterid',
+              ParamType.String,
+            ),
+            chaptername: params.getParam(
+              'chaptername',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'LessonDetail',
+          path: '/lessonDetail',
+          builder: (context, params) => LessonDetailWidget(
+            lessonId: params.getParam(
+              'lessonId',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

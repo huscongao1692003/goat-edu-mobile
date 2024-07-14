@@ -3,9 +3,9 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'allesson_page_model.dart';
 export 'allesson_page_model.dart';
 
@@ -97,26 +97,19 @@ class _AllessonPageWidgetState extends State<AllessonPageWidget>
         ),
         body: SafeArea(
           top: true,
-          child: RefreshIndicator(
-            onRefresh: () async {
-              setState(() => _model.listViewPagingController?.refresh());
-              await _model.waitForOnePageForListView();
-            },
-            child: PagedListView<ApiPagingParams, dynamic>(
-              pagingController: _model.setListViewController(
-                (nextPageMarker) => APIAzureGroup.getLessonsByChapterCall.call(
-                  authToken: currentUserData?.token,
-                  id: widget.chapterid,
-                  pageNumber: nextPageMarker.nextPageNumber,
-                  pageSize: 5,
-                ),
-              ),
-              padding: EdgeInsets.zero,
-              reverse: false,
-              scrollDirection: Axis.vertical,
-              builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                // Customize what your widget looks like when it's loading the first page.
-                firstPageProgressIndicatorBuilder: (_) => Center(
+          child: FutureBuilder<ApiCallResponse>(
+            future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
+                  ..complete(APIAzureGroup.getLessonsByChapterCall.call(
+                    authToken: currentUserData?.token,
+                    id: widget.chapterid,
+                    pageNumber: 1,
+                    pageSize: 100,
+                  )))
+                .future,
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
                   child: SizedBox(
                     width: 50.0,
                     height: 50.0,
@@ -126,79 +119,111 @@ class _AllessonPageWidgetState extends State<AllessonPageWidget>
                       ),
                     ),
                   ),
-                ),
-                // Customize what your widget looks like when it's loading another page.
-                newPageProgressIndicatorBuilder: (_) => Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
-                  ),
-                ),
+                );
+              }
+              final listViewGetLessonsByChapterResponse = snapshot.data!;
 
-                itemBuilder: (context, _, listLessonIndex) {
-                  final listLessonItem = _model
-                      .listViewPagingController!.itemList![listLessonIndex];
-                  return Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x230E151B),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
+              return Builder(
+                builder: (context) {
+                  final listLesson = APIAzureGroup.getLessonsByChapterCall
+                          .listLessons(
+                            listViewGetLessonsByChapterResponse.jsonBody,
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 12.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  getJsonField(
-                                    listLessonItem,
-                                    r'''$.lessonName''',
-                                  ).toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF14181B),
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
+                          ?.toList() ??
+                      [];
+
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      setState(() => _model.apiRequestCompleter = null);
+                      await _model.waitForApiRequestCompleted();
+                    },
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listLesson.length,
+                      itemBuilder: (context, listLessonIndex) {
+                        final listLessonItem = listLesson[listLessonIndex];
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 12.0, 16.0, 12.0),
+                          child: Container(
+                            width: double.infinity,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Color(0x230E151B),
+                                  offset: Offset(
+                                    0.0,
+                                    2.0,
+                                  ),
+                                )
                               ],
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
-                          ),
-                        ],
-                      ),
-                    ).animateOnPageLoad(
-                        animationsMap['containerOnPageLoadAnimation']!),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'LessonDetail',
+                                  queryParameters: {
+                                    'lessonId': serializeParam(
+                                      getJsonField(
+                                        listLessonItem,
+                                        r'''$.id''',
+                                      ).toString(),
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 0.0, 12.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          getJsonField(
+                                            listLessonItem,
+                                            r'''$.lessonName''',
+                                          ).toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: const Color(0xFF14181B),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['containerOnPageLoadAnimation']!),
+                        );
+                      },
+                    ),
                   );
                 },
-              ),
-            ),
+              );
+            },
           ),
         ),
       ),

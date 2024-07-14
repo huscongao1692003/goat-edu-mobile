@@ -36,6 +36,8 @@ class APIAzureGroup {
   static AnswerDiscussionCall answerDiscussionCall = AnswerDiscussionCall();
   static VoteDiscussionCall voteDiscussionCall = VoteDiscussionCall();
   static EnrollSubjectCall enrollSubjectCall = EnrollSubjectCall();
+  static LessonDetailCall lessonDetailCall = LessonDetailCall();
+  static GetTheoryLessonCall getTheoryLessonCall = GetTheoryLessonCall();
 }
 
 class GetSubjectsCall {
@@ -599,6 +601,61 @@ class EnrollSubjectCall {
     return ApiManager.instance.makeApiCall(
       callName: 'EnrollSubject',
       apiUrl: '$baseUrl/api/user/subject/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class LessonDetailCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'LessonDetail',
+      apiUrl: '$baseUrl/api/lesson/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  dynamic lessonDetailData(dynamic response) => getJsonField(
+        response,
+        r'''$.data''',
+      );
+}
+
+class GetTheoryLessonCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetTheoryLesson',
+      apiUrl: '$baseUrl/api/theory/lesson/$id',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authToken',

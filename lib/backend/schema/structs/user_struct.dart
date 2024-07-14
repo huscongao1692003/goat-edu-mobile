@@ -13,12 +13,14 @@ class UserStruct extends BaseStruct {
     String? email,
     String? image,
     String? token,
+    String? phoneNumber,
   })  : _userId = userId,
         _username = username,
         _fullname = fullname,
         _email = email,
         _image = image,
-        _token = token;
+        _token = token,
+        _phoneNumber = phoneNumber;
 
   // "userId" field.
   String? _userId;
@@ -64,6 +66,13 @@ class UserStruct extends BaseStruct {
 
   bool hasToken() => _token != null;
 
+  // "phoneNumber" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  set phoneNumber(String? val) => _phoneNumber = val;
+
+  bool hasPhoneNumber() => _phoneNumber != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         userId: data['userId'] as String?,
         username: data['username'] as String?,
@@ -71,6 +80,7 @@ class UserStruct extends BaseStruct {
         email: data['email'] as String?,
         image: data['image'] as String?,
         token: data['token'] as String?,
+        phoneNumber: data['phoneNumber'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -83,6 +93,7 @@ class UserStruct extends BaseStruct {
         'email': _email,
         'image': _image,
         'token': _token,
+        'phoneNumber': _phoneNumber,
       }.withoutNulls;
 
   @override
@@ -109,6 +120,10 @@ class UserStruct extends BaseStruct {
         ),
         'token': serializeParam(
           _token,
+          ParamType.String,
+        ),
+        'phoneNumber': serializeParam(
+          _phoneNumber,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -145,6 +160,11 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        phoneNumber: deserializeParam(
+          data['phoneNumber'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -158,12 +178,13 @@ class UserStruct extends BaseStruct {
         fullname == other.fullname &&
         email == other.email &&
         image == other.image &&
-        token == other.token;
+        token == other.token &&
+        phoneNumber == other.phoneNumber;
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([userId, username, fullname, email, image, token]);
+      .hash([userId, username, fullname, email, image, token, phoneNumber]);
 }
 
 UserStruct createUserStruct({
@@ -173,6 +194,7 @@ UserStruct createUserStruct({
   String? email,
   String? image,
   String? token,
+  String? phoneNumber,
 }) =>
     UserStruct(
       userId: userId,
@@ -181,4 +203,5 @@ UserStruct createUserStruct({
       email: email,
       image: image,
       token: token,
+      phoneNumber: phoneNumber,
     );
