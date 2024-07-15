@@ -40,6 +40,8 @@ class APIAzureGroup {
   static GetTheoryLessonCall getTheoryLessonCall = GetTheoryLessonCall();
   static GetEnrollmentCall getEnrollmentCall = GetEnrollmentCall();
   static GetQuizCall getQuizCall = GetQuizCall();
+  static GetFlashcardContentCall getFlashcardContentCall =
+      GetFlashcardContentCall();
 }
 
 class GetSubjectsCall {
@@ -729,6 +731,37 @@ class GetQuizCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class GetFlashcardContentCall {
+  Future<ApiCallResponse> call({
+    String? flashcardId = '',
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetFlashcardContent',
+      apiUrl: '$baseUrl/api/flashcard_content/$flashcardId',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? listFlashcardContent(dynamic response) => getJsonField(
+        response,
+        r'''$[:]''',
+        true,
+      ) as List?;
 }
 
 /// End API Azure Group Code

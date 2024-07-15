@@ -6,12 +6,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -42,9 +39,6 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => PostdetailModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
@@ -348,7 +342,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                             ),
                             r'''$.discussionBodyHtml''',
                           ).toString(),
-                          height: MediaQuery.sizeOf(context).height * 0.1,
+                          height: MediaQuery.sizeOf(context).height * 0.3,
                           verticalScroll: false,
                           horizontalScroll: false,
                           html: true,
@@ -485,26 +479,6 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                 setState(() => FFAppState()
                                                         .isVotedState =
                                                     !FFAppState().isVotedState);
-                                                _model.apiResultec7 =
-                                                    await APIAzureGroup
-                                                        .voteDiscussionCall
-                                                        .call(
-                                                  id: widget.discussionId,
-                                                  authToken:
-                                                      currentUserData?.token,
-                                                );
-
-                                                if ((_model.apiResultec7
-                                                        ?.succeeded ??
-                                                    true)) {
-                                                  FFAppState().isVotedState =
-                                                      true;
-                                                  setState(() {});
-                                                } else {
-                                                  HapticFeedback.lightImpact();
-                                                }
-
-                                                setState(() {});
                                               },
                                               value: FFAppState().isVotedState,
                                               onIcon: Icon(
@@ -633,393 +607,103 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          child: Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, -1.0),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 20.0, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                12.0,
-                                                                12.0,
-                                                                12.0,
-                                                                0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  2.0),
-                                                          child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              context.pushNamed(
-                                                                'Profile06',
-                                                                extra: <String,
-                                                                    dynamic>{
-                                                                  kTransitionInfoKey:
-                                                                      const TransitionInfo(
-                                                                    hasTransition:
-                                                                        true,
-                                                                    transitionType:
-                                                                        PageTransitionType
-                                                                            .leftToRight,
-                                                                  ),
-                                                                },
-                                                              );
-                                                            },
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          40.0),
-                                                              child:
-                                                                  Image.network(
-                                                                functions.convertImagepath(
-                                                                    currentUserData!
-                                                                        .image),
-                                                                width: 40.0,
-                                                                height: 40.0,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child:
-                                                                TextFormField(
-                                                              controller: _model
-                                                                  .textController,
-                                                              focusNode: _model
-                                                                  .textFieldFocusNode,
-                                                              onChanged: (_) =>
-                                                                  EasyDebounce
-                                                                      .debounce(
-                                                                '_model.textController',
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        2000),
-                                                                () => setState(
-                                                                    () {}),
-                                                              ),
-                                                              autofocus: true,
-                                                              obscureText:
-                                                                  false,
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                hintText:
-                                                                    'Write something...',
-                                                                hintStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Plus Jakarta Sans',
-                                                                      color: const Color(
-                                                                          0xFF57636C),
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                                enabledBorder:
-                                                                    const UnderlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0x00000000),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                focusedBorder:
-                                                                    const UnderlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0x00000000),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                errorBorder:
-                                                                    const UnderlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0x00000000),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                focusedErrorBorder:
-                                                                    const UnderlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0x00000000),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                contentPadding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            4.0,
-                                                                            8.0,
-                                                                            12.0),
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF14181B),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                              maxLines: 8,
-                                                              minLines: 3,
-                                                              validator: _model
-                                                                  .textControllerValidator
-                                                                  .asValidator(
-                                                                      context),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const Divider(
-                                                    height: 12.0,
-                                                    thickness: 2.0,
-                                                    color: Color(0xFFE0E3E7),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(12.0, 4.0,
-                                                                12.0, 12.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0),
-                                                              child:
-                                                                  FlutterFlowIconButton(
-                                                                borderColor: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    30.0,
-                                                                borderWidth:
-                                                                    1.0,
-                                                                buttonSize:
-                                                                    40.0,
-                                                                icon: const Icon(
-                                                                  Icons
-                                                                      .photo_outlined,
-                                                                  color: Color(
-                                                                      0xFF57636C),
-                                                                  size: 20.0,
-                                                                ),
-                                                                onPressed: () {
-                                                                  print(
-                                                                      'IconButton pressed ...');
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        FFButtonWidget(
-                                                          onPressed: () async {
-                                                            _model.apiResultz3v =
-                                                                await APIAzureGroup
-                                                                    .answerDiscussionCall
-                                                                    .call(
-                                                              questionId: widget
-                                                                  .discussionId,
-                                                              answerBodyHtml: _model
-                                                                  .textController
-                                                                  .text,
-                                                              authToken:
-                                                                  currentUserData
-                                                                      ?.token,
-                                                              answerBody: _model
-                                                                  .textController
-                                                                  .text,
-                                                            );
-
-                                                            if ((_model
-                                                                    .apiResultz3v
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              context.pushNamed(
-                                                                'postdetail',
-                                                                queryParameters:
-                                                                    {
-                                                                  'discussionId':
-                                                                      serializeParam(
-                                                                    widget
-                                                                        .discussionId,
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                }.withoutNulls,
-                                                              );
-                                                            } else {
-                                                              context.pushNamed(
-                                                                  'Home20SearchArticles');
-                                                            }
-
-                                                            setState(() {});
-                                                          },
-                                                          text: 'Comment',
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 90.0,
-                                                            height: 40.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: const Color(
-                                                                0xFF4B39EF),
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Plus Jakarta Sans',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          16.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                            elevation: 2.0,
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        12.0),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 400.0,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF048178),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              blurRadius: 4.0,
+                                              color: Color(0x33000000),
+                                              offset: Offset(
+                                                0.0,
+                                                2.0,
                                               ),
-                                            ),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          border: Border.all(
+                                            color: const Color(0x9AFFFFFF),
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 8.0, 12.0, 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  4.0),
+                                                          child: Icon(
+                                                            Icons
+                                                                .add_task_rounded,
+                                                            color: Colors.white,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          'How to comment?',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Figtree',
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 8.0)),
+                                                    ),
+                                                    Text(
+                                                      'Please go to our web to have full functionality like comment',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Figtree',
+                                                            color: const Color(
+                                                                0x9AFFFFFF),
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(height: 4.0)),
+                                                ),
+                                              ),
+                                            ].divide(const SizedBox(width: 8.0)),
                                           ),
                                         ),
                                       ),
@@ -1173,25 +857,20 @@ class _PostdetailWidgetState extends State<PostdetailWidget>
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
-                                                                      Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          getJsonField(
-                                                                            listAnserItem,
-                                                                            r'''$.answerBody''',
-                                                                          ).toString(),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .labelMedium
-                                                                              .override(
-                                                                                fontFamily: 'Readex Pro',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                        ),
+                                                                      FlutterFlowWebView(
+                                                                        content:
+                                                                            getJsonField(
+                                                                          listAnserItem,
+                                                                          r'''$.answerBodyHtml''',
+                                                                        ).toString(),
+                                                                        height:
+                                                                            141.0,
+                                                                        verticalScroll:
+                                                                            false,
+                                                                        horizontalScroll:
+                                                                            false,
+                                                                        html:
+                                                                            true,
                                                                       ),
                                                                     ],
                                                                   ),

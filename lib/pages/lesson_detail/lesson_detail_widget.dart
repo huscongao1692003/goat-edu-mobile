@@ -1044,7 +1044,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                                                     ),
                                                     child: ListTile(
                                                       title: Text(
-                                                        'Title',
+                                                        'How to make quiz?',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1057,7 +1057,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                                                                 ),
                                                       ),
                                                       subtitle: Text(
-                                                        'Subtitle goes here...',
+                                                        'Please go to our web to do quiz !!! 😉',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

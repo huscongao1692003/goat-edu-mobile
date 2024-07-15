@@ -8,14 +8,6 @@ class PostdetailModel extends FlutterFlowModel<PostdetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (VoteDiscussion)] action in ToggleIcon widget.
-  ApiCallResponse? apiResultec7;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (AnswerDiscussion)] action in Button widget.
-  ApiCallResponse? apiResultz3v;
   // State field(s) for ListView widget.
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
@@ -27,9 +19,6 @@ class PostdetailModel extends FlutterFlowModel<PostdetailWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
     listViewPagingController?.dispose();
   }
 

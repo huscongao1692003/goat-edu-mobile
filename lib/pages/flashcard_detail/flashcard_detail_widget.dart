@@ -1,6 +1,8 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_swipeable_stack.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flip_card/flip_card.dart';
@@ -231,116 +233,146 @@ class _FlashcardDetailWidgetState extends State<FlashcardDetailWidget>
                           ).animateOnPageLoad(
                               animationsMap['textOnPageLoadAnimation']!),
                         ),
+                        Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.5,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: FutureBuilder<ApiCallResponse>(
+                            future: APIAzureGroup.getFlashcardContentCall.call(
+                              flashcardId: widget.flashcardId,
+                              authToken: currentUserData?.token,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              final swipeableStackGetFlashcardContentResponse =
+                                  snapshot.data!;
+
+                              return Builder(
+                                builder: (context) {
+                                  final listFlashcard =
+                                      APIAzureGroup.getFlashcardContentCall
+                                              .listFlashcardContent(
+                                                swipeableStackGetFlashcardContentResponse
+                                                    .jsonBody,
+                                              )
+                                              ?.toList() ??
+                                          [];
+
+                                  return FlutterFlowSwipeableStack(
+                                    onSwipeFn: (index) {},
+                                    onLeftSwipe: (index) {},
+                                    onRightSwipe: (index) {},
+                                    onUpSwipe: (index) {},
+                                    onDownSwipe: (index) {},
+                                    itemBuilder: (context, listFlashcardIndex) {
+                                      final listFlashcardItem =
+                                          listFlashcard[listFlashcardIndex];
+                                      return FlipCard(
+                                        fill: Fill.fillBack,
+                                        direction: FlipDirection.HORIZONTAL,
+                                        speed: 400,
+                                        front: Container(
+                                          width: 100.0,
+                                          height: 0.0,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xFF4A3FAC),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(12.0),
+                                              bottomRight:
+                                                  Radius.circular(12.0),
+                                              topLeft: Radius.circular(12.0),
+                                              topRight: Radius.circular(12.0),
+                                            ),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Text(
+                                              getJsonField(
+                                                listFlashcardItem,
+                                                r'''$.flashcardContentQuestion''',
+                                              ).toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    fontSize: 24.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                        back: Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xFF4532BB),
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(12.0),
+                                              bottomRight:
+                                                  Radius.circular(12.0),
+                                              topLeft: Radius.circular(12.0),
+                                              topRight: Radius.circular(12.0),
+                                            ),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Text(
+                                              getJsonField(
+                                                listFlashcardItem,
+                                                r'''$.flashcardContentAnswer''',
+                                              ).toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Colors.white,
+                                                    fontSize: 24.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    itemCount: listFlashcard.length,
+                                    controller: _model.swipeableStackController,
+                                    loop: false,
+                                    cardDisplayCount: 3,
+                                    scale: 0.9,
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   );
                 },
               ),
-            ),
-            ListView(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              children: [
-                Container(
-                  width: 100.0,
-                  height: 100.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: FlipCard(
-                    fill: Fill.fillBack,
-                    direction: FlipDirection.VERTICAL,
-                    speed: 400,
-                    front: Container(
-                      width: 100.0,
-                      height: 0.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x33000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(12.0),
-                          bottomRight: Radius.circular(12.0),
-                          topLeft: Radius.circular(12.0),
-                          topRight: Radius.circular(12.0),
-                        ),
-                        border: Border.all(
-                          width: 0.5,
-                        ),
-                      ),
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: AnimatedDefaultTextStyle(
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                letterSpacing: 0.0,
-                              ),
-                          duration: const Duration(milliseconds: 600),
-                          curve: Curves.easeIn,
-                          child: const Text(
-                            'Front',
-                          ),
-                        ),
-                      ),
-                    ),
-                    back: Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x33000000),
-                            offset: Offset(
-                              0.0,
-                              2.0,
-                            ),
-                          )
-                        ],
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(12.0),
-                          bottomRight: Radius.circular(12.0),
-                          topLeft: Radius.circular(12.0),
-                          topRight: Radius.circular(12.0),
-                        ),
-                        border: Border.all(
-                          width: 0.5,
-                        ),
-                      ),
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: AnimatedDefaultTextStyle(
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                letterSpacing: 0.0,
-                              ),
-                          duration: const Duration(milliseconds: 600),
-                          curve: Curves.easeIn,
-                          child: const Text(
-                            'Back',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
             ),
           ],
         ),
