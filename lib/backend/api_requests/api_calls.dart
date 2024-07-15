@@ -38,7 +38,8 @@ class APIAzureGroup {
   static EnrollSubjectCall enrollSubjectCall = EnrollSubjectCall();
   static LessonDetailCall lessonDetailCall = LessonDetailCall();
   static GetTheoryLessonCall getTheoryLessonCall = GetTheoryLessonCall();
-  static GetQuizLessonCall getQuizLessonCall = GetQuizLessonCall();
+  static GetEnrollmentCall getEnrollmentCall = GetEnrollmentCall();
+  static GetQuizCall getQuizCall = GetQuizCall();
 }
 
 class GetSubjectsCall {
@@ -672,25 +673,20 @@ class GetTheoryLessonCall {
   }
 }
 
-class GetQuizLessonCall {
+class GetEnrollmentCall {
   Future<ApiCallResponse> call({
-    String? lessonId = '',
     String? authToken = '',
-    String? type = 'lesson',
   }) async {
     final baseUrl = APIAzureGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'GetQuizLesson',
-      apiUrl: '$baseUrl/api/quiz',
+      callName: 'GetEnrollment',
+      apiUrl: '$baseUrl/api/user/enroll',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authToken',
       },
-      params: {
-        'id': lessonId,
-        'type': type,
-      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -700,10 +696,39 @@ class GetQuizLessonCall {
     );
   }
 
-  dynamic quizList(dynamic response) => getJsonField(
+  List? listedSubject(dynamic response) => getJsonField(
         response,
-        r'''$[:].questionInQuizzes''',
-      );
+        r'''$.subjectEnrollment''',
+        true,
+      ) as List?;
+}
+
+class GetQuizCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? authToken = '',
+  }) async {
+    final baseUrl = APIAzureGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetQuiz',
+      apiUrl: '$baseUrl/api/quiz',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'id': id,
+        'type': "lesson",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End API Azure Group Code

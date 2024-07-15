@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'lesson_detail_widget.dart' show LessonDetailWidget;
 import 'package:flutter/material.dart';
@@ -12,9 +11,6 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
-      FlutterFlowDataTableController<dynamic>();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

@@ -2,7 +2,6 @@ import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
@@ -10,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'lesson_detail_model.dart';
 export 'lesson_detail_model.dart';
 
@@ -663,10 +663,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                       child: FutureBuilder<ApiCallResponse>(
-                        future: APIAzureGroup.getQuizLessonCall.call(
-                          lessonId: widget.lessonId,
+                        future: APIAzureGroup.getQuizCall.call(
+                          id: widget.lessonId,
                           authToken: currentUserData?.token,
-                          type: 'lesson',
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -683,7 +682,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                               ),
                             );
                           }
-                          final middleGetQuizLessonResponse = snapshot.data!;
+                          final middleGetQuizResponse = snapshot.data!;
 
                           return Container(
                             constraints: const BoxConstraints(
@@ -1019,158 +1018,64 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                                                   },
                                                 ),
                                               ),
-                                              Builder(
-                                                builder: (context) {
-                                                  final listQuestionAnswer =
-                                                      APIAzureGroup
-                                                          .getQuizLessonCall
-                                                          .quizList(
-                                                            middleGetQuizLessonResponse
-                                                                .jsonBody,
-                                                          )
-                                                          .toList();
-
-                                                  return FlutterFlowDataTable<
-                                                      dynamic>(
-                                                    controller: _model
-                                                        .paginatedDataTableController,
-                                                    data: listQuestionAnswer,
-                                                    columnsBuilder:
-                                                        (onSortChanged) => [
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Text(
-                                                            'Question',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
+                                              ListView(
+                                                padding: EdgeInsets.zero,
+                                                scrollDirection: Axis.vertical,
+                                                children: [
+                                                  Slidable(
+                                                    endActionPane: ActionPane(
+                                                      motion:
+                                                          const ScrollMotion(),
+                                                      extentRatio: 0.25,
+                                                      children: [
+                                                        SlidableAction(
+                                                          label: 'Share',
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .info,
+                                                          icon: Icons.share,
+                                                          onPressed: (_) {
+                                                            print(
+                                                                'SlidableActionWidget pressed ...');
+                                                          },
                                                         ),
-                                                      ),
-                                                      DataColumn2(
-                                                        label: DefaultTextStyle
-                                                            .merge(
-                                                          softWrap: true,
-                                                          child: Text(
-                                                            'Answer',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: Colors
-                                                                      .white,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                    dataRowBuilder:
-                                                        (listQuestionAnswerItem,
-                                                                listQuestionAnswerIndex,
-                                                                selected,
-                                                                onSelectChanged) =>
-                                                            DataRow(
-                                                      color:
-                                                          WidgetStateProperty
-                                                              .all(
-                                                        listQuestionAnswerIndex %
-                                                                    2 ==
-                                                                0
-                                                            ? FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground
-                                                            : FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                      ),
-                                                      cells: [
-                                                        Text(
-                                                          getJsonField(
-                                                            APIAzureGroup
-                                                                .getQuizLessonCall
-                                                                .quizList(
-                                                              middleGetQuizLessonResponse
-                                                                  .jsonBody,
-                                                            ),
-                                                            r'''$[:].quizQuestion''',
-                                                          ).toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          getJsonField(
-                                                            APIAzureGroup
-                                                                .getQuizLessonCall
-                                                                .quizList(
-                                                              middleGetQuizLessonResponse
-                                                                  .jsonBody,
-                                                            ),
-                                                            r'''$[:].quizCorrect''',
-                                                          ).toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ]
-                                                          .map((c) =>
-                                                              DataCell(c))
-                                                          .toList(),
+                                                      ],
                                                     ),
-                                                    paginated: true,
-                                                    selectable: false,
-                                                    hidePaginator: true,
-                                                    showFirstLastButtons: false,
-                                                    headingRowHeight: 56.0,
-                                                    dataRowHeight: 48.0,
-                                                    columnSpacing: 20.0,
-                                                    headingRowColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    addHorizontalDivider: true,
-                                                    addTopAndBottomDivider:
-                                                        false,
-                                                    hideDefaultHorizontalDivider:
-                                                        true,
-                                                    horizontalDividerColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryBackground,
-                                                    horizontalDividerThickness:
-                                                        1.0,
-                                                    addVerticalDivider: false,
-                                                  );
-                                                },
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        'Title',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Outfit',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      subtitle: Text(
+                                                        'Subtitle goes here...',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      tileColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      dense: false,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               FlutterFlowWebView(
                                                 content: getJsonField(
